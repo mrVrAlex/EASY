@@ -1,0 +1,54 @@
+<?php
+$title = 'Дополнительные данные.';
+$this->headTitle($title);
+?>
+<?php $this->headScript()->captureStart() ?>
+$(document).ready(function () {
+		$('.alter')
+			.focusin(function () {
+					if (this.alt=='') {
+						this.alt = this.value;
+						this.value = '';
+						$(this).removeClass('alter');
+					}
+				})
+			.focusout(function () {
+					if (this.value=='') {
+						this.value = this.alt;
+						this.alt = '';
+						$(this).addClass('alter');
+					}
+				});
+
+
+		var btns = $('form div div');
+		btns.find('a.confirm').click(function () {
+				$(this).parent().find('input[type*=checkbox]')[0].checked = true;
+				$(this).remove();
+			});
+		btns.find('a:first').click(function () {
+				var labelBox = $(this).parent().parent();
+				labelBox.find('input').removeClass('hidden')
+				labelBox.find('div').remove();
+			});
+
+		$('a').click(function () {
+				var ok = true;
+				$('input[type*=checkbox]').each(function () {
+						if (!this.checked) {
+							ok = false;
+						}
+					});
+
+				if (ok) {
+					$('input[type*=submit]').removeAttr('disabled');
+				}
+			});
+	});
+<?php $this->headScript()->captureEnd() ?>
+<h1><?php echo $this->escape($title); ?></h1>
+<div style="width:650px">
+    <?php echo $form; ?>
+</div>
+
+<!--<?php echo $this->CurrentInfo($appeal_id);?>-->

@@ -1,0 +1,116 @@
+<?php 
+$title = '1. Введите данные для проверки';
+$this->headTitle($title);
+?>
+<?php $this->headScript()->captureStart() ?>
+$(document).ready(function () {
+		$('.alter')
+			.focusin(function () {
+					if (this.alt=='') {
+						this.alt = this.value;
+						this.value = '';
+						$(this).removeClass('alter');
+					}
+				})
+			.focusout(function () {
+					if (this.value=='') {
+						this.value = this.alt;
+						this.alt = '';
+						$(this).addClass('alter');
+					}
+				})
+	});
+<?php $this->headScript()->captureEnd() ?>
+<?php $this->headStyle()->captureStart() ?>
+form label {
+    display: inline-block;
+}
+form div {
+    display: block;
+}
+<?php $this->headStyle()->captureEnd() ?>
+<h1><?php echo $this->escape($title); ?></h1>
+
+    <?php //echo $form; ?>
+<!--
+<div class="">
+<h4>Суммарная информация</h4>
+<blockquote><small>Кредитный продукт:</small> Краткосрочный кредит.
+</div> -->
+<!--<?php /*echo $this->formErrors($form->lastname->getMessages());*/ ?>-->
+<!-- <input type="text" name="lastname" id="lastname" /> -->
+<form action="" method="post" enctype="multipart/form-data" name="form1" id="form1">
+    <?php echo $form->product_id->render(); ?>
+     <div>
+       <label for="lastname"><?php echo $form->lastname->getLabel();?></label>
+         <?php echo $form->lastname->render(); ?>
+     </div>
+    <div>
+      <label for="firstname"><?php echo $form->firstname->getLabel();?></label>
+        <?php echo $form->firstname->render(); ?>
+    </div>
+    <div>
+      <label for="patronymic"><?php echo $form->patronymic->getLabel();?></label>
+        <?php echo $form->patronymic->render(); ?>
+    </div>
+
+    <div>
+        <label for="patronymic"><?php echo $form->birthdate->getLabel();?></label>
+        <?php echo $form->birthdate->render(); ?>
+    </div>
+
+    <div>
+           <label for="passport"><?php echo $form->passport->getLabel();?></label>
+             <?php echo $form->passport->render(); ?>
+    </div>
+
+    <!-- <div>
+       <label for="passport">Паспорт</label>
+       <input style="width: 100px" type="text" name="pass_ser" id="pass_ser" value="серия" class="alter ">
+       <input name="pass_num" type="text" class="alter" id="pass_num" style="width: 100px" value="номер">
+       <input name="pass_country" type="text" class="alter" id="pass_country" style="width: 100px" value="страна/город">
+       <input name="pass_date" type="text" class="alter" id="pass_date" style="width: 100px" value="Дата выдачи">
+       <input name="pass_authority" type="text" class="alter" id="pass_authority" style="width: 100px" value="Кем выдан">
+     </div> -->
+
+    <div>
+           <label for="address_reg"><?php echo $form->address_reg->getLabel();?></label>
+             <?php echo $form->address_reg->render(); ?>
+    </div>
+
+    <div>
+           <label for="address_real"><?php echo $form->address_real->getLabel();?></label>
+             <?php echo $form->address_real->render(); ?>
+    </div>
+<!--
+     <div>
+       <label for="passport">Адрес регистрации</label>
+       <input name="addr_reg_city" type="text" class="alter" id="addr_reg_city" style="width: 100px" value="город">
+       <input name="addr_reg_str" type="text" class="alter" id="addr_reg_str" style="width: 100px" value="улица">
+       <input name="addr_reg_house" type="text" class="alter" id="addr_reg_house" style="width: 100px" value="дом">
+       <input name="addr_reg_flat" type="text" class="alter" id="addr_reg_flat" style="width: 100px" value="квартира">
+     </div>
+     <div>
+       <label for="passport">Адрес проживания</label>
+       <input name="addr_real_city" type="text" class="alter" id="addr_real_city" style="width: 100px" value="город">
+       <input name="addr_real_str" type="text" class="alter" id="addr_real_str" style="width: 100px" value="улица">
+       <input name="addr_real_house" type="text" class="alter" id="addr_real_house" style="width: 100px" value="дом">
+       <input name="addr_real_flat" type="text" class="alter" id="addr_real_flat" style="width: 100px" value="квартира">
+     </div>
+     -->
+    <div>
+      <label for="loan_amount"><?php echo $form->loan_amount->getLabel();?></label>
+        <?php echo $form->loan_amount->render(); ?>
+    </div>
+    <div>
+      <label for="loan_term"><?php echo $form->loan_term->getLabel();?></label>
+        <?php echo $form->loan_term->render(); ?>
+    </div>
+     <!-- <div>
+       <label for="yescopy">Копия документа на согласие</label>
+       <input type="file" name="yescopy" id="yescopy" />
+     </div> -->
+     <div>
+         <?php echo $form->submit->render(); ?>
+     </div>
+   </form>

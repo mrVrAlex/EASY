@@ -1,0 +1,12 @@
+<div id="current-client-block">
+    <hr/>
+    <h4>Сводная информация</h4>
+    <blockquote>
+        <p>Заявка № <strong><?php echo $this->escape($id); ?></strong> <sup><?php echo ($status == 2)?'отказано':($status == 1)?'удовлетворена':'в процессе';?></sup></p>
+        <ul>
+            <li>Клиент:<span><pre><?php echo $this->escape($firstname); ?> <?php echo $this->escape($lastname); ?> <?php echo $this->escape($patronymic); ?> <?php echo $birthdate; ?>г.p. | <a href="#">Посмотреть полную информацию</a></pre></span></li>
+            <li>Продукт:<span><pre><?php echo $this->escape($product_name); ?></pre></span></li>
+            <li>Заказ клиента:<span><pre>Сумма займа: <?php echo $this->escape($loan_amount); ?>p. <br>Срок займа: <?php echo $this->escape($loan_term); ?>дн.</pre></span></li>
+        </ul>
+    </blockquote>
+</div>

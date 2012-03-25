@@ -1,0 +1,52 @@
+<?php echo $this->doctype() ?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <?php echo $this->headMeta() ?>
+    <?php echo $this->headTitle() ?>
+    <!-- Le styles -->
+    <?php echo $this->headLink() ?>
+      <script language="javascript" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+      <script language="javascript" type="text/javascript">
+      $(document).ready(function () {
+
+      	});
+      </script>
+    <?php echo $this->headScript() ?>
+
+    <?php $this->headStyle()->captureStart() ?>
+    #contentBox {
+    	margin-top: 20px;
+    }
+    <?php $this->headStyle()->captureEnd() ?>
+
+    <?php echo $this->headStyle() ?>
+    <style type="text/css">
+
+    </style>
+    <!-- Le fav and touch icons -->
+    <?php echo $this->placeholder('favicon') ?>
+
+  </head>
+
+<body>
+<div id="mainBox">
+  <div id="headerBox">
+
+    <?php echo $this->userInfo(); ?>
+    <div id="logoBox">Can I Trust You?</div>
+    <div id="navBox">
+      <ul>
+        <li class="active"><a href="<?php echo $this->url('home') ?>">Домашняя</a></li>
+        <li><a href="#">Проверка персоны</a></li>
+        <li><a href="#">История отчетов</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="contentBox">
+      <?php echo $this->raw('content'); ?>
+  </div>
+</div>
+</body>
+</html>

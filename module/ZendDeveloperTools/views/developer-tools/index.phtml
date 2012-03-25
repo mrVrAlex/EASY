@@ -1,0 +1,13 @@
+Полное время затраченное на выполнение скрипта: <strong><?php echo $execTime; ?> </strong>milliseconds.<br/>
+Время затраченное на SQL запросы: <strong><?php echo $totalTimeSql; ?></strong> seconds<br/>
+Кол-во SQL запросов: <strong><?php echo $totalCountSql; ?></strong><br/>
+Таблица SQL запросов:
+<table>
+    <?php foreach($querys as $query):?>
+    <tr>
+        <td style="padding: 1px;"><strong><?php echo $query['time'] ?></strong></td>
+        <td style="padding: 1px;"><pre style="margin:0;"><?php echo $query['sql'] ?></pre></td>
+        <td style="padding: 1px;"><pre style="margin:0;"><?php if (count($query['params']) > 0) print_r($query['params']); else echo 'null';  ?></pre></td>
+    </tr>
+    <?php endforeach; ?>
+</table>

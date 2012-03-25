@@ -1,0 +1,19 @@
+<?php
+$title = 'Вход в систему.';
+$this->headTitle($title);
+?>
+<?php $this->headStyle()->captureStart() ?>
+#enterBox {
+    margin: 0 auto;
+    width: 480px;
+}
+<?php $this->headStyle()->captureEnd() ?>
+<div id="enterBox">
+<h2><?php echo $this->escape($title); ?></h2>
+<?php
+$form->setAction($this->url('default',
+        array('controller' => 'user', 'action' => 'login'))
+    )->setView($this);
+echo $form; ?>
+    <p>&nbsp;</p>
+</div>

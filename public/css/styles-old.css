@@ -1,0 +1,127 @@
+@charset "utf-8";
+label.standalone, div.label {
+	display: block;
+	width: 370px;
+	clear: both;
+	float: none;
+	margin-bottom: 7px;
+	margin-top: 4px;
+}
+label.standalone input,label.standalone select, div.label span {
+	display: block;
+	float: right;
+	width: 200px;
+}
+label.standalone div  {
+	display: block;
+	float: right;
+	margin-right: -200px;
+	width: 400px;
+}
+label div span {
+	width: 200px;
+	display: inline-block;
+	clip: rect(bottom)
+}
+label div a.confirm {
+	color: #F00;
+}
+.hidden, label.standalone div input {
+	display: none !important;
+}
+
+dl dt {
+    padding-top: 5px;
+}
+#client_data label {
+    width:180px;
+}
+dl dd select {
+    padding: 0;
+    height: 18px;
+    color: inherit;
+    width: 15.3em;
+}
+
+div.dijitInputField .dijitReset {
+    border: 0;
+    box-shadow: 0 0 0 0 #FFFFFF;
+}
+
+dl ul.errors li {
+    color: #B94A48;
+}
+
+dd div.dijitTextBox {
+    border: 1px solid #CCCCCC;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: 0 0 0 0 #FFFFFF;
+}
+dl dt label {
+    font-weight: bold;
+    padding: 0;
+    text-align: left;
+    vertical-align: middle;
+}
+
+#user-panel {
+    display: block;
+    float: right;
+    padding: 5px;
+}
+
+#user-panel span.info {
+    line-height: 14px;
+    display: block;
+    float:left;
+    color: rgb(255, 255, 255);
+    margin-rigth: 10px;
+}
+
+#current-client-block blockquote {
+
+}
+
+#current-client-block p {
+
+}
+
+#current-client-block ul {
+    list-style: none outside none;
+    margin: 0;
+}
+
+#current-client-block ul li {
+    margin: 0;
+    font-weight: bold;
+}
+
+#current-client-block ul li span {
+    margin-left: 20px;
+    display:block;
+}
+
+#current-client-block ul li span pre {
+    display: inline-block;
+    margin: 5px;
+    padding: 5px;
+}
+
+#current-client-block sup {
+    background-color: #DDDDFF;
+}
+
+.row200 {
+    width: 200px;
+    display: inline-block;
+    margin: 3px;
+}
+
+#form-step6 div.label span { width: auto; }
+#form-step6 label {float: none;}
+
+
+dd div { display: inline-block; }
+dd div span { display: inline-block; width: 15em; }
+
+.no-display { display: none; }

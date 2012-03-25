@@ -1,0 +1,25 @@
+<?php
+$title = 'Данные о работе.';
+$this->headTitle($title);
+?>
+<h2><?php echo $this->escape($title); ?></h2>
+
+<?php foreach($data_client as $row): ?>
+<div><span class="label row200"><?php echo $row['name']; ?>: </span><span class="bold"><strong><?php echo $row['value']; ?></strong></span></div>
+<?php endforeach; ?>
+<form action="" method="post" id="form-step6">
+<div class="label warning">Результат:
+    <span class="label success"><label>
+      <input type="radio" value="1" id="result" name="result">
+      <strong>Одобрено</strong></label> </span>
+    <span class="label important">
+    <label>
+      <input type="radio" value="0" id="result1" name="result">
+      <strong>Отказано</strong></label></span>
+  </div>
+<label class="standalone">Комментарий:
+    <textarea rows="5" cols="45" id="comment" name="comment"></textarea>
+  </label>
+    <input type="submit" value="Далее">
+</form>
+<?php echo $this->CurrentInfo($appeal_id);?>

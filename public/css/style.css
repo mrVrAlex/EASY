@@ -1,0 +1,187 @@
+@import url("buttons.css");
+BODY, HTML {
+	font-family: Helvetica, Tahoma, Arial, sans-serif;
+	font-size: 13px;
+	font-style: normal;
+	font-weight: normal;
+	background-color: #FFF;
+	background-image: url(/images/main_bg.png);
+	background-repeat: repeat-x;
+	background-position: top;
+	height: auto;
+	width: 100%;
+	padding: 0px;
+	margin: 0px;
+}
+img {
+	border: 0 none;
+}
+a {
+	color: #447BC4;
+}
+a.blank {
+	padding-right: 15px;
+}
+a.blank:hover {
+	background-image: url(/images/new_window.png);
+	background-repeat: no-repeat;
+	background-position: right;
+}
+#mainBox {
+	width: 960px;
+	height: auto;
+	margin: 0px auto;
+	position: relative;
+}
+#headerBox {
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+#logoBox {
+	font-size: 36px;
+}
+#accountBox {
+	float:right;
+}
+#accountBox ul {
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+#accountBox ul li {
+	display: inline;
+	margin-left: 10px;
+}
+#accountBox ul li a {
+	color: #447bc4;
+	font-weight: 700;
+	text-decoration: none;
+}
+#accountBox ul li a:hover {
+	text-decoration: underline;
+}
+#accountBox ul li span {
+	color: rgb(209, 107, 0);
+	font-weight: 700;
+}
+#navBox ul {
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+#navBox ul li {
+	display: inline;
+	padding-left: 6px;
+	padding-right: 6px;
+	font-size: 12px;
+	text-transform: uppercase;
+	font-weight:700;
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-left-color: #9FA7AF;
+}
+#navBox ul li:first-child {
+	padding-left: 0px;
+	border-left: 0px none;
+}
+#navBox ul li a {
+	color: #447bc4;
+	text-decoration: none;
+}
+#navBox ul li a:hover {
+	text-decoration: underline;
+}
+#contentBox {
+	border: 1px solid rgb(201, 221, 242);
+	border-radius: 5px;
+	background-color: #FFF;
+	box-shadow: 0pt -2px 0pt rgba(204, 223, 243, 0.3) inset, 0pt 0pt 1px rgba(0, 0, 0, 0.1);
+	padding: 10px;
+}
+#contentBox .visitorBox {
+	display: table-row;
+	width: 100%;
+}
+#contentBox .visitorBox:hover {
+	background-color: #F4FAFF;
+}
+
+/* FORMS */
+form input.alter {
+	color: #ccc;
+}
+form input[type=text] {
+    border: 1px solid #B7B7B7;
+    border-radius: 5px 5px 5px 5px;
+    font-size: 14px;
+    padding: 8px;
+    width: 300px;
+}
+form input[type=password] {
+    border: 1px solid #B7B7B7;
+    border-radius: 5px 5px 5px 5px;
+    font-size: 14px;
+    padding: 8px;
+    width: 300px;
+}
+form select {
+    border: 1px solid #B7B7B7;
+    border-radius: 5px 5px 5px 5px;
+    font-size: 14px;
+    padding: 8px;
+}
+form input[type=submit] {
+	margin-left: 140px;
+}
+form .hidden {
+	display: none;
+}
+form div {
+    display: inline-block;
+	margin-bottom: 8px;
+}
+form div div {
+	display: inline-block;
+}
+form div div span {
+	font-size: 18px;
+	width: 300px;
+	display: inline-block;
+}
+form label {
+    font-size: 14px;
+    width: 140px;
+}
+form span {
+    display: inline-block;
+    float: left;
+    padding: 8px;
+    width: 140px;
+}
+form ul {
+	/*margin-left: 154px;*/
+    width: 300px;
+	padding: 0px;
+	list-style-type: none;
+}
+form ul li {
+	color: #FF0000;
+}
+table {
+	border: 0 none;
+}
+table th {
+	border-top: 2px solid #EEEEEE;
+	text-align: left;
+	color: #D16B00;
+    font-size: 11px;
+    font-weight: 700;
+	padding: 4px 6px;
+}
+table td {
+	border-top: 1px dotted #C9DDF2;
+	color: #666666;
+    font-size: 11px;
+    font-weight: 700;
+	padding: 4px 6px;
+}
