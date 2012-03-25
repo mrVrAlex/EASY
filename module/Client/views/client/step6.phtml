@@ -2,17 +2,30 @@
 $title = 'Данные о работе.';
 $this->headTitle($title);
 ?>
+<?php $this->headStyle()->captureStart() ?>
+form label {
+    display: inline-block;
+}
+form div {
+    display: block;
+}
+form span {
+    float: none;
+    padding: 1px;
+}
+<?php $this->headStyle()->captureEnd() ?>
 <h2><?php echo $this->escape($title); ?></h2>
-
-<?php foreach($data_client as $row): ?>
-<div><span class="label row200"><?php echo $row['name']; ?>: </span><span class="bold"><strong><?php echo $row['value']; ?></strong></span></div>
-<?php endforeach; ?>
+    <div style="width: 400px;">
 <form action="" method="post" id="form-step6">
+<?php foreach($data_client as $row): ?>
+<div class="label"><?php echo $row['name']; ?>: <span><strong><?php echo $row['value']; ?></strong></span></div>
+<?php endforeach; ?>
+
 <div class="label warning">Результат:
-    <span class="label success"><label>
+    <span><label>
       <input type="radio" value="1" id="result" name="result">
       <strong>Одобрено</strong></label> </span>
-    <span class="label important">
+    <span>
     <label>
       <input type="radio" value="0" id="result1" name="result">
       <strong>Отказано</strong></label></span>
@@ -20,6 +33,10 @@ $this->headTitle($title);
 <label class="standalone">Комментарий:
     <textarea rows="5" cols="45" id="comment" name="comment"></textarea>
   </label>
-    <input type="submit" value="Далее">
+    <div>
+    <input type="submit" value="Далее" class="button white">
+    </div>
 </form>
-<?php echo $this->CurrentInfo($appeal_id);?>
+    </div>
+<p>&nbsp;</p>
+<!--<?php echo $this->CurrentInfo($appeal_id);?>-->
