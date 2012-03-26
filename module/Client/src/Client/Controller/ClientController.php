@@ -255,15 +255,26 @@ class ClientController extends ActionController
 
     public function step6Action(){
         $appeal_id = $this->getRequest()->getMetadata('appeal', null);
-        //@todo REFACTORING
-        $appealTable = $this->getLocator()->get('Product\Model\AppealTable');
-        $rowAppeal = $appealTable->getAppealById($appeal_id);
+        $serviceClient = $this->getServiceClient();
+        //@todo REFACTORING 2
+        /**
+         * @var $serviceAppeal \Product\Service\Appeal
+         */
+        $serviceAppeal = $this->getLocator()->get('Product\Service\Appeal');
+        $rowAppeal = $serviceAppeal->load($appeal_id)->getData();
+        $rowClient = $serviceAppeal->setServiceClient($serviceClient)->getClientData();
+
+
+        // $appealTable = $this->getLocator()->get('Product\Model\AppealTable');
+        //$rowAppeal = $appealTable->getAppealById($appeal_id);
+
         $productTable = $this->getLocator()->get('Product\Model\ProductTable');
         $rowProduct = $productTable->getProductById($rowAppeal['product_id']);
-        $serviceClient = $this->getServiceClient()->load($rowAppeal['client_id']);
-        $dataall = $serviceClient->getData('data');
+
+        //$serviceClient = $this->getServiceClient()->load($rowAppeal['client_id']);
+        //$dataall = $serviceClient->getData('data');
         $client_data = json_decode($rowProduct['client_data'],true);
-        $client_data_value = $dataall[$serviceClient::DATA_INFO_JOBS];
+        $client_data_value = $rowClient['data'][$serviceClient::DATA_INFO_JOBS];
         $data_client = array();
         foreach ($client_data['forms'][$serviceClient::DATA_INFO_JOBS]['elements'] as $name => $elem){
             $data_client[] = array('name'=>$elem['label'],'value'=>$client_data_value[$name]);
@@ -276,12 +287,12 @@ class ClientController extends ActionController
                 //Если выбрано радиобокс - ОДОБРЕНО
                 if ($formData['result'] == 1){
 
-                    $appealTable->update(array('status'=>1),'id = '.$rowAppeal['id']);
+                    $serviceAppeal->getAppealTable()->update(array('status'=>1),'id = '.$rowAppeal['id']);
                     /**
                      * @var $serviceContract \Product\Service\Contract
                      */
                     $serviceContract = $this->getLocator()->get('service-contract');
-                    $contract_id = $serviceContract->create($appealTable->getAppealById($rowAppeal['id']));
+                    $contract_id = $serviceContract->create($rowAppeal);
 
                     return $this->redirect()->toRoute('default', array(
                             'controller' => 'product',
@@ -292,7 +303,7 @@ class ClientController extends ActionController
                 } else {
 
                     $data = array('status'=>2,'decline_reason'=>$formData['comment']);
-                    $appealTable->update($data,'id = '.$rowAppeal['id']);
+                    $serviceAppeal->getAppealTable()->update($data,'id = '.$rowAppeal['id']);
                     //@todo $this->flashMessages
                     return $this->redirect()->toRoute('home');
                 }
