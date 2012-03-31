@@ -100,6 +100,10 @@
          return $contracts;
      }
 
+     public function printContract(){
+
+     }
+
      public function setTill($till)
      {
          $this->till = $till;
