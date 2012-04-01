@@ -9,10 +9,11 @@
  
  namespace Product\Service;
 
+ use Core\Service;
  /**
   *
   */
-class Till
+class Till extends Service\AbstractService
 {
      /**
       * @var \Product\Model\TillTable
@@ -66,4 +67,12 @@ class Till
      {
          return $this->tillTable;
      }
+
+    /**
+     * @return \Core\Db\Table
+     */
+    public function getModelTable()
+    {
+        return $this->getTillTable();
+    }
 }

@@ -1,9 +1,9 @@
 <?php
-$title = 'Шаг 7: Печать документов.';
+$title = 'Печать документов.';
 $this->headTitle($title);
 ?>
 <h1><?php echo $this->escape($title); ?></h1>
 
-<p><a href="/product/print/contract/<?=$contract_id?>/save/1">Договор.</a></p>
-<p><a href="#">Расходный кассовый ордер.</a></p>
+<p><a href="/product/print/contract/<?=$contract_id?>/save/dogovor">Договор.</a></p>
+<p><a href="/product/print/contract/<?=$contract_id?>/save/rko">Расходный кассовый ордер.</a></p>
     <?php echo htmlspecialchars_decode($form) ?>

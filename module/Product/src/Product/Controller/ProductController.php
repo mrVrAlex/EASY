@@ -19,13 +19,48 @@ class ProductController extends ActionController
 
     public function printAction(){
         $contract_id = $this->getRequest()->getMetadata('contract', null);
-
-        if ($contract_id && $this->getRequest()->getMetadata('save', false)){
+        $save = $this->getRequest()->getMetadata('save', false);
+        if ($contract_id && $save){
             $serviceContract = $this->getLocator()->get('service-contract')->load($contract_id);
             $dataContract = $serviceContract->getData();
 
             $serviceClient = $this->getLocator()->get('service-client')->load($dataContract['client_id']);
             $dataClient = $serviceClient->getData();
+            $fio = $dataClient['lastname'] . ' ' . $dataClient['firstname'] . ' ' . $dataClient['patronymic'];
+            //@todo refactor - change on abstract teplater
+            $templater = new \PHPExcel\View\Templater();
+
+
+            if ($save == 'dogovor'){
+
+                $vars = array();
+                $vars['A1'] = array('NUMBER'=>$dataContract['id']);
+                $vars['A6'] = array('FIO'=>$fio);
+                $vars['A29'] = array('FIO'=>$fio);
+                //....@todo all fill varaible
+                $obj = $templater->render('data/files/Dogovor.xls',$vars,true);
+                echo $templater->save($obj,'data/files/'.$dataContract['fname'].'.xls',true);
+                die();
+            }
+
+            if ($save == 'rko'){
+                $dataRko = $serviceContract->printRKO();
+                $vars = array();
+                $vars['K10'] = array('DATE'=>$dataRko['till']['dt']);
+                $vars['H10'] = array('NUMBER'=>$dataRko['till']['id']);
+                $vars['H14'] = array('SUMMA'=>$dataRko['payment']['summa']);
+                $vars['A16'] = array('FIO'=>$fio);
+                $vars['A17'] = array('NUM_DOG'=>$dataContract['id'],'DATE_DOG'=>$dataContract['dt']);
+                //....@todo all fill varaible
+                $obj = $templater->render('data/files/rko.xls',$vars,true);
+                echo $templater->save($obj,'data/files/'.$dataRko['till']['fname'].'.xls',true);
+                die();
+
+            }
+        }
+        /*
+        if ($contract_id && $this->getRequest()->getMetadata('save', false)){
+
 
             $fio = $dataClient['lastname'] . ' ' . $dataClient['firstname'] . ' ' . $dataClient['patronymic'];
 
@@ -62,7 +97,7 @@ class ProductController extends ActionController
 
         $objPHPExcel = \PHPExcel_IOFactory::load('data/files/Dogovor.xls');
 
-        /*/ Set properties
+        // Set properties
         echo date('H:i:s') . " Set properties\n";
         $objPHPExcel->getProperties()->setCreator("Maarten Balliauw");
         $objPHPExcel->getProperties()->setLastModifiedBy("Maarten Balliauw");
@@ -88,7 +123,7 @@ class ProductController extends ActionController
         echo date('H:i:s') . " Write to Excel2007 format\n";
         $objWriter = new \PHPExcel_Writer_Excel2007($objPHPExcel);
         $objWriter->save('data/files/exel1.xlsx');
-        */
+
         $objPHPExcel->setActiveSheetIndex(0);
         $aSheet = $objPHPExcel->getActiveSheet();
         $t = '<table cellpadding="0" cellspacing="0">';
@@ -105,10 +140,10 @@ class ProductController extends ActionController
             $t .= "<tr>\r\n";
         }
         $t .= '</table>';
-        //echo $t;
+        //echo $t; */
 
         return array(
-            'form' => $t,
+            'form' => '',
             'contract_id'=>$contract_id
         );
     }

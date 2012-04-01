@@ -71,6 +71,8 @@
                                    'till_id'     => $till_id
                              );
                      $this->getContractPaymentTable()->insert($data);
+                     $dataTill = $this->getTill()->load($till_id)->getData();
+
                  }
              } break;
 
@@ -84,6 +86,17 @@
      public function load($id){
              $this->dataContract = $this->getContractTable()->fetchRow('id = '.(int)$id)->toArray();
          return $this;
+     }
+
+     public function getPaymentData($byFilter = null){
+         if ($this->dataContract === null) return false;
+
+         $data = array('contract_id = ?'=>$this->dataContract['id']);
+         if (!is_null($byFilter) && is_array($byFilter)){
+             $data = $data + $byFilter;
+         }
+
+         return $this->getContractPaymentTable()->fetchAll($data)->toArray();
      }
 
      /**
@@ -102,6 +115,14 @@
 
      public function printContract(){
 
+     }
+
+     public function printRKO(){
+
+         $dataPayment = $this->getPaymentData(array('type = ?'=>self::TYPE_PAY_LOAN));
+         $dataTill = $this->getTill()->load($dataPayment[0]['till_id'])->getData();
+
+         return array('payment'=>$dataPayment[0],'till'=>$dataTill);
      }
 
      public function setTill($till)
