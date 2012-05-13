@@ -38,6 +38,12 @@ echo $this->doctype()->__invoke('HTML5');
   </head>
 
   <body>
+  <style>
+      body {
+          padding-bottom: 40px;
+          padding-top: 60px;
+      }
+  </style>
 
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
@@ -48,7 +54,7 @@ echo $this->doctype()->__invoke('HTML5');
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="<?php echo $this->url('home') ?>">Админ-панель</a>
+          <a class="brand" href="<?php echo $this->url('home') ?>">Firma / Админпанель</a>
           <div class="nav-collapse">
             <ul class="nav">
               <li class="active"><a href="<?php echo $this->url('adminhome') ?>">
@@ -148,7 +154,7 @@ echo $this->doctype()->__invoke('HTML5');
       </div>
     </div>
 
-    <div class="container">
+    <div class="container-fluid">
 
       <?php echo $this->content; ?>
 
