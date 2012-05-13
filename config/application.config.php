@@ -2,6 +2,7 @@
 return array(
     'modules' => array(
         'Core',
+        'AdminPanel',
         'AppUser',
         'Client',
         'Product',
