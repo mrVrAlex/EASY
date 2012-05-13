@@ -19,7 +19,7 @@ $this->headScript()->appendFile('http://twitter.github.com/bootstrap/assets/js/b
 $this->headScript()->appendFile($basePath . '/js/html5.js', 'text/javascript', 
     array('conditional' => 'lt IE9',));
 
-echo $this->doctype();
+echo $this->doctype()->__invoke('HTML5');
 ?>
 
 <html lang="en">
