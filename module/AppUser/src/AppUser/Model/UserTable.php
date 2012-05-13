@@ -2,9 +2,10 @@
 
 namespace AppUser\Model;
 
-use Zend\Db\Table\AbstractTable;
+use Core\Db\Table as DbTable,
+    Zend\Db\Sql;
 
-class UserTable extends AbstractTable
+class UserTable extends DbTable
 {
     protected $tableName = 'users';
 
@@ -18,9 +19,9 @@ class UserTable extends AbstractTable
     public function getUser($id)
     {
         $id  = (int) $id;
-        $row = $this->fetchRow('id = ' . $id);
+        //$row = $this->getSql()->select() //fetchRow('id = ' . $id);
         if (!$row) {
-            throw new Exception("Could not find row $id");
+            throw new \Exception("Could not find row $id");
         }
         return $row->toArray();
     }

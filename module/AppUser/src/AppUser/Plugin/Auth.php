@@ -30,7 +30,7 @@ class Auth
 		if ($authenticationService instanceof AuthenticationService){
 			$this->_auth = $authenticationService;
 		} else {
-			throw new \Zend\Exception('sopa!');
+			throw new \Exception('sopa!');
 		}
 	}
 
@@ -61,7 +61,8 @@ class Auth
 
                 $controller = $event->getRouteMatch()->getParam('controller');
                 $action = $event->getRouteMatch()->getParam('action');
-                $foundController = $event->getTarget()->getLocator()->instanceManager()->hasAlias($controller);
+                $in = $event->getTarget()->getLocator()->instanceManager();
+                $foundController = $in->hasAlias($controller);
                 $foundAction = false;
 
                 if($foundController) {
@@ -80,7 +81,7 @@ class Auth
         //}
     }
 
-    public function setApplication(\Zend\Mvc\AppContext $app)
+    public function setApplication(\Zend\Mvc\ApplicationInterface $app)
     {
         $this->app = $app;
     }

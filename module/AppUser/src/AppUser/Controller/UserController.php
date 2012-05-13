@@ -3,6 +3,7 @@
 namespace AppUser\Controller;
 
 use Zend\Mvc\Controller\ActionController,
+    Zend\View\Model\ViewModel,
     AppUser\Model\UserTable,
     AppUser\Form\LoginForm;
 
@@ -54,12 +55,13 @@ class UserController extends ActionController
             }
         }
 
-      return array('form' => $form);
+      return new ViewModel(array('form' => $form));
     }
 
     protected function _getAuthAdapter($login, $password)
     {
-	$authAdapter = new \Zend\Authentication\Adapter\DbTable();
+       $dbAdapter = $this->getLocator()->get('db-config');
+	$authAdapter = new \Zend\Authentication\Adapter\DbTable($dbAdapter);
 	$authAdapter->setTableName('users')
 			->setIdentityColumn('login')
 			->setCredentialColumn('password')

@@ -49,6 +49,13 @@ return array(
                     ),
                 ),
             ),
+            'Zend\View\Resolver\TemplatePathStack' => array(
+                'parameters' => array(
+                    'paths'  => array(
+                        'user' => __DIR__ . '/../views',
+                    ),
+                ),
+            ),
             'AppUser\Plugin\Auth'=> array(
                 'parameters' => array(
                    // 'authenticationService' => '\Zend\Authentication\AuthenticationService'

@@ -14,10 +14,10 @@ class Module implements AutoloaderProvider
     
     public function init(Manager $moduleManager)
     {
-        //$this->initAutoloader();
-        $events = StaticEventManager::getInstance();
-        $events->attach('bootstrap', 'bootstrap', array($this, 'initializePlugins'), 101);
-        $events->attach('Zend\Mvc\Application','route', array($this, 'postRoute'), 1);
+        $events       = $moduleManager->events();
+        $sharedEvents = $events->getSharedManager();
+        $sharedEvents->attach('bootstrap', 'bootstrap', array($this, 'initializePlugins'), 101);
+        //$sharedEvents->attach('Zend\Mvc\Application','route', array($this, 'postRoute'), 1);
     }
 
 
@@ -40,14 +40,14 @@ class Module implements AutoloaderProvider
         return new Config(include __DIR__ . '/config/module.config.php');
     }
 
-    public function initializePlugins(\Zend\EventManager\Event $e)
+    public function initializePlugins($e)
     {
         $locator = $e->getParam('application')->getLocator();
         //@TODO clean refactoring when ZF2.0 releaze
         //\Zend\Registry::set('locator',$locator);
         $this->authPlugin = $locator->get('AppUser\Plugin\Auth');
         $this->authPlugin->setApplication($e->getParam('application'));
-	    \Zend\Db\Table\AbstractTable::setDefaultAdapter($locator->get('Zend\Db\Adapter\PdoMysql'));
+	    //\Zend\Db\Table\AbstractTable::setDefaultAdapter($locator->get('Zend\Db\Adapter\PdoMysql'));
         //\Zend\View\HelperLoader
 
         //$view = $locator->get('view');

@@ -5,7 +5,7 @@ return array(
     'di'                    => array(
         'instance' => array(
             'alias' => array(
-               // 'index' => 'Core\Controller\IndexController',
+                'index' => 'Core\Controller\IndexController',
                // 'error' => 'Core\Controller\ErrorController',
                 'viewRenderer'  => 'Zend\View\Renderer\PhpRenderer',
             ),
@@ -56,7 +56,7 @@ return array(
                             'options' => array(
                                 'route'    => '/',
                                 'defaults' => array(
-                                    'controller' => 'Core\Controller\IndexController',
+                                    'controller' => 'index',
                                     'action'     => 'index',
                                 ),
                             ),
