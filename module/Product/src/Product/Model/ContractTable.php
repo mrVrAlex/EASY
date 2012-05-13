@@ -13,7 +13,7 @@ use Zend\Db,
 
 class ContractTable extends DbTable
 {
-    protected $_name = 'contract';
+    protected $tableName = 'contract';
 
     public function insert($data){
         if (!isset($data['dt'])){

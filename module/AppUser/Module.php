@@ -50,8 +50,8 @@ class Module implements AutoloaderProvider
 	    \Zend\Db\Table\AbstractTable::setDefaultAdapter($locator->get('Zend\Db\Adapter\PdoMysql'));
         //\Zend\View\HelperLoader
 
-        $view = $locator->get('view');
-        $view->setBroker($locator->get('Zend\View\HelperBroker'));
+        //$view = $locator->get('view');
+        //$view->setBroker($locator->get('Zend\View\HelperBroker'));
         //$broker = $view->getBroker();
         //$loader = $broker->getClassLoader();
        // $helper = new View\Helper\UserInfo();

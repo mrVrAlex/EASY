@@ -14,6 +14,6 @@ use Zend\Db,
 
 class ProductTable extends DbTable
 {
-    protected $_name = 'products';
+    protected $tableName = 'products';
     
 }

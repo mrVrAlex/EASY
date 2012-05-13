@@ -36,10 +36,11 @@ use Traversable,
     Zend\Config\Config,
     Zend\Translator\Translator as Translator,
     Zend\Stdlib\IteratorToArray,
-    Zend\Stdlib\RequestDescription as Request,
+    Zend\Stdlib\RequestInterface as Request,
+   // Zend\Stdlib\RequestDescription as Request,
     Zend\Mvc\Router\Exception\RuntimeException as Exception,
     Zend\Mvc\Router\RouteMatch,
-    Zend\Mvc\Router\Http\Route as RouteInterface;
+    Zend\Mvc\Router\Http\RouteInterface as RouteInterface;
 
 
 /**

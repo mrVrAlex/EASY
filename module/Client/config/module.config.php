@@ -14,15 +14,15 @@ return array(
             ),
             'Client\Model\ClientTable' => array(
                 'parameters' => array(
-                    'config' => 'db-config',
+                    'adapter' => 'db-config',
             )),
             'Client\Model\ClientHistoryTable' => array(
                 'parameters' => array(
-                    'config' => 'db-config',
+                    'adapter' => 'db-config',
             )),
             'Client\Model\BuroCheckTable' => array(
                 'parameters' => array(
-                    'config' => 'db-config',
+                    'adapter' => 'db-config',
             )),
             'Client\Service\Client' => array(
                 'parameters' => array(
@@ -30,12 +30,10 @@ return array(
                     'clientTable' => 'Client\Model\ClientTable'
             )),
 
-            'Zend\View\PhpRenderer' => array(
+            'Zend\View\Resolver\TemplatePathStack' => array(
                 'parameters' => array(
-                    'options'  => array(
-                        'script_paths' => array(
-                            'client' => __DIR__ . '/../views',
-                        ),
+                    'paths'  => array(
+                        'client' => __DIR__ . '/../views',
                     ),
                 ),
             ),

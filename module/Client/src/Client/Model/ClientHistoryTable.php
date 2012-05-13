@@ -2,11 +2,12 @@
 
 namespace Client\Model;
 
-use Zend\Db\Table\AbstractTable;
+use Core\Db\Table as DbTable,
+    Zend\Db\Sql;
 
-class ClientHistoryTable extends AbstractTable
+class ClientHistoryTable extends DbTable
 {
-    protected $_name = 'clients_hist';
+    protected $tableName = 'clients_hist';
 
     public function getAlbum($id)
     {

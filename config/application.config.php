@@ -6,7 +6,7 @@ return array(
         'Client',
         'Product',
         'PHPExcel',
-        'ZendDeveloperTools'
+       // 'ZendDeveloperTools'
     ),
     'module_listener_options' => array( 
         'config_cache_enabled' => false,

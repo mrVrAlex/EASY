@@ -3,15 +3,15 @@
 namespace Client\Model;
 
 use Core\Db\Table as DbTable,
-    Zend\Db;
+    Zend\Db\Sql;
 
 class ClientTable extends DbTable
 {
-    protected $_name = 'clients';
+    protected $tableName = 'clients';
 
     public function insert($data){
         $fieldStat = array(
-            'add_date' => new Db\Expr('NOW()'),
+            'add_date' => new Sql\Expression('NOW()'),
         );
         $data += $fieldStat;
         return parent::insert($this->filterField($data));

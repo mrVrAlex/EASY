@@ -13,7 +13,7 @@ use Zend\Db,
 
 class TillTable extends DbTable
 {
-    protected $_name = 'till';
+    protected $tableName = 'till';
 
     public function getLastBalance($branch_id = 0){
         $select = $this->select()

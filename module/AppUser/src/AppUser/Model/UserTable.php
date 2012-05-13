@@ -6,7 +6,7 @@ use Zend\Db\Table\AbstractTable;
 
 class UserTable extends AbstractTable
 {
-    protected $_name = 'users';
+    protected $tableName = 'users';
 
     public function getUserInfo($id){
         $user = $this->getUser($id);

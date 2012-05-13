@@ -2,8 +2,8 @@
 
 namespace Product\Controller;
 
-use Zend\Mvc\Controller\ActionController;
-
+use Zend\Mvc\Controller\ActionController,
+    Zend\View\Model\ViewModel;
 
 class ProductController extends ActionController
 {
@@ -12,9 +12,7 @@ class ProductController extends ActionController
     public function indexAction()
     {
 
-        return array(
-            'form' => "",
-        );
+        return new ViewModel();
     }
 
     public function printAction(){

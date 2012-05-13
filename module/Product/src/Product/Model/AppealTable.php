@@ -7,7 +7,7 @@ use Zend\Db,
 
 class AppealTable extends DbTable
 {
-    protected $_name = 'appeal';
+    protected $tableName = 'appeal';
 
     public function insert($data){
         $fieldStat = array(

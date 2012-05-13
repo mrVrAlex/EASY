@@ -8,9 +8,13 @@
  */
 namespace Core\Db;
 
-use Zend\Db\Table\AbstractTable;
+use Zend\Db\TableGateway\AbstractTableGateway;
 
-abstract class Table extends AbstractTable {
+abstract class Table extends AbstractTableGateway {
+
+    public function setup(){
+        $this->lazyInitialize = true;
+    }
 
     public function filterField($data){
         //@todo клиент на оптимизацию (Вызывать $this->info(COLS)) + вкл кеширование метаданных

@@ -15,11 +15,31 @@ return array(
         'di' => array(
             'instance' => array(
                 'alias' => array(
-                    'db-config' => 'Zend\Db\Adapter\PdoMysql',
+                    'db-config' => 'Zend\Db\Adapter\Adapter',
                 ),
-                'Zend\Db\Adapter\PdoMysql' => array(
+                'Zend\Db\Adapter\Adapter' => array(
                     'parameters' => array(
-                        'config' => array(
+                        'driver' => array(
+                            'driver' => 'Mysqli',
+                            'host' => 'localhost',
+                            'username' => 'root',
+                            'password' => '',
+                            'dbname' => 'zf2tutorial',
+                            'charset' => 'utf8',
+                            //'options' => array(
+                            //    'profiler' => 'Zend\Db\Profiler\Firebug'
+                           //),
+                           // 'profiler' => array(
+                           //     //'class' => 'Zend\Db\Profiler\Firebug',
+                            //    'enabled' => true
+                            //)
+                            ),
+                    )
+
+                ),
+                'Zend\Db\Adapter\Driver\Pdo\Pdo' => array(
+                    'parameters' => array(
+                     //   'config' => array(
                             'host' => 'localhost',
                             'username' => 'root',
                             'password' => '',
@@ -32,7 +52,7 @@ return array(
                                 //'class' => 'Zend\Db\Profiler\Firebug',
                                 'enabled' => true
                             )
-                        ),
+                    //    ),
                     ),
                 ),
             ),

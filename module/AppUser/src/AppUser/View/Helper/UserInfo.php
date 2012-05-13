@@ -8,7 +8,9 @@
  */
 namespace AppUser\View\Helper;
 
-use Zend\View\Helper\AbstractHelper;
+use Zend\View\Helper\AbstractHelper,
+    Zend\View\Renderer\RendererInterface,
+    Zend\View\Helper\HelperInterface;
 
 class UserInfo extends AbstractHelper {
 

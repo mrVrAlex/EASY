@@ -15,23 +15,23 @@ return array(
            // ),
             'Product\Model\AppealTable' => array(
                 'parameters' => array(
-                    'config' => 'db-config',
+                    'adapter' => 'db-config',
             )),
             'Product\Model\ProductTable' => array(
                 'parameters' => array(
-                    'config' => 'db-config',
+                    'adapter' => 'db-config',
             )),
             'Product\Model\ContractTable' => array(
                 'parameters' => array(
-                    'config' => 'db-config',
+                    'adapter' => 'db-config',
             )),
             'Product\Model\ContractPaymentTable' => array(
                 'parameters' => array(
-                    'config' => 'db-config',
+                    'adapter' => 'db-config',
             )),
             'Product\Model\TillTable' => array(
                 'parameters' => array(
-                    'config' => 'db-config',
+                    'adapter' => 'db-config',
             )),
             'Product\Service\Contract' => array(
                 'parameters' => array(
@@ -53,12 +53,19 @@ return array(
                             ),
                         ),
 
-            'Zend\View\PhpRenderer' => array(
+            /*'viewRenderer' => array(
                 'parameters' => array(
                     'options'  => array(
                         'script_paths' => array(
                             'product' => __DIR__ . '/../views',
                         ),
+                    ),
+                ),
+            ),*/
+            'Zend\View\Resolver\TemplatePathStack' => array(
+                'parameters' => array(
+                    'paths'  => array(
+                        'product' => __DIR__ . '/../views',
                     ),
                 ),
             ),

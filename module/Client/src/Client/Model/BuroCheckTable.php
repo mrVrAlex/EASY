@@ -13,7 +13,7 @@ use Zend\Db,
 
 class BuroCheckTable extends DbTable
 {
-    protected $_name = 'buro_check';
+    protected $tableName = 'buro_check';
 
     public function insert($data){
         $fieldStat = array(

@@ -3,6 +3,7 @@
 namespace Client\Controller;
 
 use Zend\Mvc\Controller\ActionController,
+    Zend\View\Model\ViewModel,
     Client\Model\ClientTable,
     Client\Form\AddForm,
     Client\Service;
@@ -62,9 +63,9 @@ class ClientController extends ActionController
                 ));
             }
         }
-        return array(
+        return new ViewModel(array(
             'form' => $form,
-        );
+        ));
     }
 
     public function step3Action(){

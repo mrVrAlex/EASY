@@ -8,14 +8,13 @@ use Zend\Module\Manager,
 
 class Module implements AutoloaderProvider
 {
-    protected $view;
-    protected $viewListener;
 
     public function init(Manager $moduleManager)
     {
-        $events = StaticEventManager::getInstance();
-        $events->attach('bootstrap', 'bootstrap', array($this, 'initializeView'), 100);
-        $events->attach('bootstrap', 'bootstrap', array($this, 'initializeTranslator'), 101);
+        $events       = $moduleManager->events();
+        $sharedEvents = $events->getSharedManager();
+        $sharedEvents->attach('bootstrap', 'bootstrap', array($this, 'initializeView'), 100);
+        $sharedEvents->attach('bootstrap', 'bootstrap', array($this, 'initializeTranslator'), 101);
     }
 
     public function getAutoloaderConfig()
@@ -44,6 +43,22 @@ class Module implements AutoloaderProvider
     
     public function initializeView($e)
     {
+
+        $app          = $e->getParam('application');
+        $basePath     = '/';//$app->getRequest()->getBasePath();
+        $locator      = $app->getLocator();
+        $renderer     = $locator->get('Zend\View\Renderer\PhpRenderer');
+        $renderer->plugin('basePath')->setBasePath($basePath);
+                //$view->plugin('headLink')->appendStylesheet($basePath . 'css/bootstrap.min.css');
+        $renderer->plugin('headLink')->appendStylesheet($basePath . 'css/style.css');
+        $html5js = '<script src="' . $basePath . 'js/html5.js"></script>';
+        $renderer->plugin('placeHolder')->__invoke('html5js')->set($html5js);
+        $favicon = '<link rel="shortcut icon" href="' . $basePath . 'images/favicon.ico">';
+        $renderer->plugin('placeHolder')->__invoke('favicon')->set($favicon);
+        $renderer->plugin('doctype')->__invoke('XHTML1_TRANSITIONAL');
+
+
+        /*
         $app          = $e->getParam('application');
         $locator      = $app->getLocator();
         $config       = $e->getParam('config');
@@ -52,7 +67,7 @@ class Module implements AutoloaderProvider
         $viewListener = $this->getViewListener($view, $config);
         $app->events()->attachAggregate($viewListener);
         $events       = StaticEventManager::getInstance();
-        $viewListener->registerStaticListeners($events, $locator);
+        $viewListener->registerStaticListeners($events, $locator);*/
     }
 
     protected function getViewListener($view, $config)
@@ -70,6 +85,7 @@ class Module implements AutoloaderProvider
 
     protected function getView($app)
     {
+        /*
         if ($this->view) {
             return $this->view;
         }
@@ -94,6 +110,6 @@ class Module implements AutoloaderProvider
         $view->plugin('doctype')->__invoke('XHTML1_TRANSITIONAL');
 
         $this->view = $view;
-        return $view;
+        return $view;*/
     }
 }

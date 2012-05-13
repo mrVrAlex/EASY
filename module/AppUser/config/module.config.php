@@ -14,33 +14,32 @@ return array(
             ),
             'AppUser\Model\UserTable' => array(
                 'parameters' => array(
-                    'config' => 'db-config',
+                    'adapter' => 'db-config',
             )),
 
             'AppUser\View\Helper\UserInfo' => array(
                 'parameters' => array(
-                    'view' => 'Zend\View\PhpRenderer'
+                    'view' => 'viewRenderer'
                 ),
             ),
-
+            'Zend\View\HelperLoader' => array(
+                 'parameters' => array(
+                    'map' => array(
+                         'userInfo' => 'AppUser\View\Helper\UserInfo'
+                     ),
+                 ),
+            ),
             'Zend\View\HelperBroker' =>array(
                 'parameters' => array(
-                    'options'  => array(
-                        'class_loader' => array(
-                            'class' => 'Zend\View\HelperLoader',
-                            'options' => array(
-                                'userInfo'=>'AppUser\View\Helper\UserInfo',
-                                'currentInfo'=>'Client\View\Helper\CurrentInfo'
-                            ),
-                        ),
+                        'loader' => 'Zend\View\HelperLoader',
                         'register_plugins_on_load' => true,
                         //'plugins' => array('userInfo'=>'AppUser\View\Helper\UserInfo'),
-                    ),
+
                     //'locator' => '\Zend\Di\Di'
                 ),
             ),
 
-            'Zend\View\PhpRenderer' => array(
+            'viewRenderer' => array(
                 'parameters' => array(
                     'options'  => array(
                         'script_paths' => array(
