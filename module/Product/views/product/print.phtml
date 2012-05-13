@@ -4,6 +4,10 @@ $this->headTitle($title);
 ?>
 <h1><?php echo $this->escape($title); ?></h1>
 
-<p><a href="/product/print/contract/<?=$contract_id?>/save/dogovor">Договор.</a></p>
-<p><a href="/product/print/contract/<?=$contract_id?>/save/rko">Расходный кассовый ордер.</a></p>
-    <?php echo htmlspecialchars_decode($form) ?>
+<p><a href="/product/print/contract/<?=$contract_id?>/save/dogovor" target="_blank">Договор.</a></p>
+<p><a href="/product/print/contract/<?=$contract_id?>/save/rko" target="_blank">Расходный кассовый ордер.</a></p>
+<p><a href="/Анкета.htm" target="_blank">Анкета.</a></p>
+<p><a href="/доп соглашение.htm" target="_blank">Доп соглашение.</a></p>
+
+
+    <!--<?php echo htmlspecialchars_decode($form) ?>-->
