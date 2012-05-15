@@ -5,6 +5,8 @@ $this->headTitle($title);
 <h1><?php echo $this->escape($title); ?></h1>
 
 <ul>
-  <li><a class="btn" href="/client/add/product/1">Краткосрочный кредит.</a></li>
+    <?php foreach ($this->listProducts as $row): ?>
+        <li><a class="btn" href="/client/add/product/<?php echo $row['id']; ?>"><?php echo $row['product_name']; ?></a></li>
+    <?php endforeach; ?>
 </ul>
 <p>&nbsp;</p>

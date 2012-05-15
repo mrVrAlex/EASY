@@ -6,7 +6,8 @@ return array(
                 'product' => 'Product\Controller\ProductController',
                 'service-contract' => 'Product\Service\Contract',
                 'service-till' => 'Product\Service\Till',
-                'service-appeal' => 'Product\Service\Appeal'
+                'service-appeal' => 'Product\Service\Appeal',
+                'service-product' => 'Product\Service\Product'
             ),
             //'Product\Controller\AlbumController' => array(
             //    'parameters' => array(
@@ -51,7 +52,13 @@ return array(
                             'parameters' => array(
                                 'appealTable' => 'Product\Model\AppealTable',
                             ),
-                        ),
+            ),
+
+            'Product\Service\Product' => array(
+                            'parameters' => array(
+                                'productTable' => 'Product\Model\ProductTable',
+                            ),
+            ),
 
             /*'viewRenderer' => array(
                 'parameters' => array(

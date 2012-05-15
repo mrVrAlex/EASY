@@ -12,7 +12,9 @@ class ProductController extends ActionController
     public function indexAction()
     {
 
-        return new ViewModel();
+        $listProduct = $this->getLocator()->get('service-product')->getAllList();
+
+        return new ViewModel(array('listProducts'=>$listProduct));
     }
 
     public function printAction(){
