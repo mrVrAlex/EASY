@@ -4,16 +4,12 @@ return array(
         'instance' => array(
             'alias' => array(
                 'product' => 'Product\Controller\ProductController',
+                'credit' => 'Product\Controller\CreditController',
                 'service-contract' => 'Product\Service\Contract',
                 'service-till' => 'Product\Service\Till',
                 'service-appeal' => 'Product\Service\Appeal',
                 'service-product' => 'Product\Service\Product'
             ),
-            //'Product\Controller\AlbumController' => array(
-            //    'parameters' => array(
-                    //'albumTable' => 'Product\Model\AlbumTable',
-            //    ),
-           // ),
             'Product\Model\AppealTable' => array(
                 'parameters' => array(
                     'adapter' => 'db-config',
@@ -73,6 +69,111 @@ return array(
                 'parameters' => array(
                     'paths'  => array(
                         'product' => __DIR__ . '/../views',
+                    ),
+                ),
+            ),
+
+                        // Setup for router and routes
+            'Zend\Mvc\Router\RouteStackInterface' => array(
+                'parameters' => array(
+                    'routes' => array(
+
+                        'product' => array(
+                            'type'    => 'Core\Router\Http\Route',
+                            'options' => array(
+                                'route'    => '/product/:controller/:action/*',
+                                'defaults' => array(
+                                    'controller' => 'Product\Controller\ProductController',
+                                    'action' => 'index'
+                                ),
+                            ),/*
+
+
+
+                            'type' => 'Zend\Mvc\Router\Http\Part',
+                            'options' => array(
+                                'route' => array(
+                                    'type'    => 'Zend\Mvc\Router\Http\Literal',
+                                    'options' => array(
+                                        'route'    => '/product',
+                                        'defaults' => array(
+                                            'controller' => 'Product\Controller\ProductController',
+                                            'action' => 'index'
+                                        ),
+                                    )
+                                ),
+                                'may_terminate' => true,
+                                'route_broker'  => new \Zend\Mvc\Router\RouteBroker(),
+                                'child_routes'  => array(
+                                    'product_controller' => array(
+                                        'type'    => 'Zend\Mvc\Router\Http\Segment',
+                                        'options' => array(
+                                            'route'    => '/[:controller[/:action]]',
+                                            'constraints' => array(
+                                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                            ),
+                                            'defaults' => array(
+                                                'controller' => 'Product\Controller\ProductController',
+                                                'action' => 'index'
+                                            ),
+                                        ),
+                                        'may_terminate' => true,
+                                        'child_routes'  => array(
+                                            'rss' => array(
+                                                'type'    => 'Core\Router\Http\Route',
+                                                'options' => array(
+                                                    'route'    => '/:controller/:action/*',
+                                                    'defaults' => array(
+                                                        'controller' => 'Product\Controller\ProductController',
+                                                        'action' => 'index'
+                                                    ),
+                                                ),/*
+                                                'child_routes'  => array(
+                                                    'sub' => array(
+                                                        'type'    => 'literal',
+                                                        'options' => array(
+                                                            'route'    => '/sub',
+                                                            'defaults' => array(
+                                                                'action' => 'ItsSubRss',
+                                                            ),
+                                                        )
+                                                    ),
+                                                ),* /
+                                            ),
+                                        ),
+                                    ),
+                                    'forum' => array(
+                                        'type'    => 'Zend\Mvc\Router\Http\Literal',
+                                        'options' => array(
+                                            'route'    => 'forum',
+                                            'defaults' => array(
+                                                'controller' => 'ItsForum',
+                                            ),
+                                        ),
+                                    ),
+                                ),
+
+                            )
+                            /*
+                            'type'    => 'Zend\Mvc\Router\Http\Segment',
+                            'options' => array(
+                                'route'    => '/[:controller[/:action]]',
+                                'constraints' => array(
+                                    'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                    'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                   // 'product' => 'product'
+                                ),
+                                'defaults' => array(
+                                    'controller' => 'Product\Controller\ProductController',
+                                    'action'     => 'index',
+                                   // 'product' => 'product'
+                                ),
+                            ),
+                            */
+
+                        ),
+
                     ),
                 ),
             ),
