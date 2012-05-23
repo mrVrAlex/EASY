@@ -6,6 +6,7 @@
  * Time: 18:46
  * To change this template use File | Settings | File Templates.
  */
+
 namespace Client\Model;
 
 use Core\Model\AbstractModel,
@@ -49,4 +50,5 @@ class Client extends AbstractModel
     {
         return $this->_table;
     }
+
 }
