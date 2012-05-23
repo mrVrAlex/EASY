@@ -8,13 +8,24 @@
  */
 namespace Core\Db;
 
-use Zend\Db\TableGateway\AbstractTableGateway;
+use Zend\Db\TableGateway\TableGateway,
+    Zend\Db\Adapter\Adapter,
+    Zend\Db\ResultSet\ResultSet;
 
-abstract class Table extends AbstractTableGateway {
+abstract class Table extends TableGateway {
 
-    public function setup(){
-        $this->lazyInitialize = true;
+    protected $tableName;
+
+    public function __construct(Adapter $adapter = null, $databaseSchema = null,
+    ResultSet $selectResultPrototype = null)
+    {
+    return parent::__construct($this->tableName, $adapter, $databaseSchema,
+    $selectResultPrototype);
     }
+
+    //public function getSql(){
+    //    return parent::getSql();
+    //}
 
     public function filterField($data){
         //@todo клиент на оптимизацию (Вызывать $this->info(COLS)) + вкл кеширование метаданных
@@ -22,7 +33,7 @@ abstract class Table extends AbstractTableGateway {
          return array_intersect_key($data,array_combine($info['cols'],$info['cols']));
     }
 
-    // @todo ДОДЕЛАТЬ МЕТОД
+    /*/ @todo ДОДЕЛАТЬ МЕТОД
     public function __call($nameMethod,$args){
         $classname = substr(strrchr(get_called_class(), "\\"), 1 );
 
@@ -31,12 +42,13 @@ abstract class Table extends AbstractTableGateway {
             if (($pos = stripos($nameMethod,$table)) !== false){ //если в названии гет - значит делает фетчров по ИД
 
                 $id = (int)$args[0];
-                return $this->fetchRow('id = ' . $id)->toArray();
+                $arr = $this->select('id = ' . $id)->toArray();
+                return $arr[0];
             }
         }
 
         return null;
-    }
+    }*/
 
     //public function __
 

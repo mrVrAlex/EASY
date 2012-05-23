@@ -37,24 +37,7 @@ return array(
                     )
 
                 ),
-                'Zend\Db\Adapter\Driver\Pdo\Pdo' => array(
-                    'parameters' => array(
-                     //   'config' => array(
-                            'host' => 'localhost',
-                            'username' => 'root',
-                            'password' => '',
-                            'dbname' => 'zf2tutorial',
-                            'charset' => 'utf8',
-                            //'options' => array(
-                            //    'profiler' => 'Zend\Db\Profiler\Firebug'
-                           //),
-                            'profiler' => array(
-                                //'class' => 'Zend\Db\Profiler\Firebug',
-                                'enabled' => true
-                            )
-                    //    ),
-                    ),
-                ),
+
             ),
         ),
 );

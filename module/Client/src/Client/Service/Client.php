@@ -8,6 +8,8 @@
  */
 namespace Client\Service;
 
+
+
 class Client {
 
     const DATA_INFO_MAIN = 'main';
@@ -29,6 +31,17 @@ class Client {
     public function create(array $data){
         $data['data'] = json_encode( array(self::DATA_INFO_MAIN => array(),self::DATA_INFO_JOBS => array(),self::DATA_INFO_ALL => array()) );
         return $this->getClientTable()->insert($data);
+    }
+
+    public function getAttributes(){
+
+    }
+
+    public function test(){
+        $clientModel = new \Client\Model\Client();
+        $clientModel->setTable($this->clientTable);
+        return $clientModel->load(0);
+
     }
 
     public function updateData(array $data,$additionalDataUpdateFlag = false,$section = null){
@@ -56,7 +69,7 @@ class Client {
 
     public function load($id){
         if (is_numeric($id)){
-            $this->dataClient = $this->getClientTable()->find($id)->current()->toArray();
+            $this->dataClient = $this->getClientTable()->select('id ='.$id)->current();
             $this->dataClient['data'] = json_decode($this->dataClient['data'],true);
         }
         return $this;

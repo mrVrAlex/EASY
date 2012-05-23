@@ -26,7 +26,7 @@ class ClientController extends ActionController
         $request = $this->getRequest();
         if ($request->isPost()) {
             $formData = $request->post()->toArray();
-            if ($form->isValid($formData)) {
+            if ($form->isValid($formData)) {/*
                 $values = $form->getValues();
                 $userProfile = $this->getLocator()->get('auth-service')->getIdentity();
                 $values['user_id'] = $userProfile['id'];
@@ -54,12 +54,12 @@ class ClientController extends ActionController
                 } catch (\Exception $e){
                     //$this->client->getAdapter()->rollBack();
                     throw new \Exception($e->getMessage());
-                }
+                }*/
                 return $this->redirect()->toRoute('default', array(
                     'controller' => 'client',
                     'action'     => 'step3',
-                    'appeal' => $appeal_id,
-                    'cflag' => $client_flag
+                    'appeal' => 6,
+                    'cflag' => 1
                 ));
             }
         }

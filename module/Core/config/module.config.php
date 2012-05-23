@@ -96,7 +96,7 @@ return array(
             'Zend\View\Resolver\TemplatePathStack' => array(
                 'parameters' => array(
                     'paths'  => array(
-                        'index' => __DIR__ . '/../views',
+                        'core' => __DIR__ . '/../views',
                     ),
                 ),
             ),
@@ -136,8 +136,31 @@ return array(
 
 
 
+
         ),
-    ),/*
+    ),
+
+    'view_manager' => array(
+        'display_not_found_reason' => true,
+        'display_exceptions' => true,
+        'doctype' => 'HTML5',
+        'not_found_template' => 'error/404',
+        'exception_template' => 'error/index',
+        'template_map' => array(
+            'layout/layout' => __DIR__ . '/../views/layouts/layout.phtml',
+            'index/index' => __DIR__ . '/../views/index/index.phtml',
+            'error/404' => __DIR__ . '/../views/error/404.phtml',
+            'error/index' => __DIR__ . '/../views/error/index.phtml',
+        ),
+        'template_path_stack' => array(
+            'core' => __DIR__ . '/../views',
+        ),
+        'strategies' => array(
+            'ViewJsonStrategy',
+            'ViewFeedStrategy',
+        ),
+    ),
+    /*
     'routes' => array(
         'default' => array(
 

@@ -2,14 +2,13 @@
 
 namespace Core;
 
-use Zend\Module\Manager,
-    Zend\EventManager\StaticEventManager,
-    Zend\Module\Consumer\AutoloaderProvider;
+use Zend\ModuleManager\ModuleManager,
+    Zend\EventManager\StaticEventManager;
 
-class Module implements AutoloaderProvider
+class Module
 {
 
-    public function init(Manager $moduleManager)
+    public function init(ModuleManager $moduleManager)
     {
         $events       = $moduleManager->events();
         $sharedEvents = $events->getSharedManager();

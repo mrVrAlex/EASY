@@ -2,17 +2,17 @@
 
 namespace AppUser;
 
-use Zend\Module\Consumer\AutoloaderProvider,
+use
     Zend\Config\Config,
-    Zend\Module\Manager,
+    Zend\ModuleManager\ModuleManager,
     Zend\Loader\AutoloaderFactory,
     Zend\EventManager\StaticEventManager;
 
-class Module implements AutoloaderProvider
+class Module
 {
     protected $authPlugin = null;
     
-    public function init(Manager $moduleManager)
+    public function init(ModuleManager $moduleManager)
     {
         $events       = $moduleManager->events();
         $sharedEvents = $events->getSharedManager();
