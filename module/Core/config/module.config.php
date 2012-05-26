@@ -1,8 +1,6 @@
 <?php
 return array(
-    'layout'                => 'layouts/layout.phtml',
-    'display_exceptions'    => true,
-    'di'                    => array(
+   /* 'di'                    => array(
         'instance' => array(
             'alias' => array(
                 'index' => 'Core\Controller\IndexController',
@@ -19,54 +17,13 @@ return array(
                     'loader' => 'Zend\Mvc\Controller\PluginLoader',
                 ),
             ),
-
             // Setup for router and routes
             'Zend\Mvc\Router\RouteStackInterface' => array(
                 'parameters' => array(
-                    'routes' => array(
-                        'default' => array(
 
-                            'type' => 'Core\Router\Http\Route',
-                            'options' => array(
-                                'route' => '/:controller/:action/*',
-                                'defaults' => array(
-                                    'controller' => 'error',
-                                    'action' => 'index'
-                                ),
-
-                            ),
-                        ),
-                        /*
-                        'default' => array(
-                            'type'    => 'Zend\Mvc\Router\Http\Segment',
-                            'options' => array(
-                                'route'    => '/[:controller[/:action]]',
-                                'constraints' => array(
-                                    'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                    'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                ),
-                                'defaults' => array(
-                                    'controller' => 'Core\Controller\IndexController',
-                                    'action'     => 'index',
-                                ),
-                            ),
-                        ),*/
-                        'home' => array(
-                            'type' => 'Zend\Mvc\Router\Http\Literal',
-                            'options' => array(
-                                'route'    => '/',
-                                'defaults' => array(
-                                    'controller' => 'index',
-                                    'action'     => 'index',
-                                ),
-                            ),
-                        ),
-                    ),
                 ),
             ),
-
             // Setup for the view layer.
-
             // Using the PhpRenderer, which just handles html produced by php
             // scripts
             'Zend\View\Renderer\PhpRenderer' => array(
@@ -133,88 +90,75 @@ return array(
                     'exceptionTemplate' => 'error/index',
                 ),
             ),
+        ),
+    ), */
 
+    'router' => array(
+        'routes' => array(
+            'default' => array(
 
+                'type' => 'Core\Router\Http\Route',
+                'options' => array(
+                    'route' => '/:controller/:action/*',
+                    'defaults' => array(
+                        'controller' => 'error',
+                        'action' => 'index'
+                    ),
 
+                ),
+            ),
+            /*
+            'default' => array(
+                'type'    => 'Zend\Mvc\Router\Http\Segment',
+                'options' => array(
+                    'route'    => '/[:controller[/:action]]',
+                    'constraints' => array(
+                        'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Core\Controller\IndexController',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),*/
+            'home' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/',
+                    'defaults' => array(
+                        'controller' => 'index',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
+        ),
+    ),
 
+    'controller' => array(
+        'classes' => array(
+            'index' => 'Core\Controller\IndexController'
         ),
     ),
 
     'view_manager' => array(
         'display_not_found_reason' => true,
         'display_exceptions' => true,
-        'doctype' => 'HTML5',
+        //'doctype' => 'HTML5',
         'not_found_template' => 'error/404',
         'exception_template' => 'error/index',
         'template_map' => array(
             'layout/layout' => __DIR__ . '/../views/layouts/layout.phtml',
-            'index/index' => __DIR__ . '/../views/index/index.phtml',
+            'core/index/index' => __DIR__ . '/../views/index/index.phtml',
             'error/404' => __DIR__ . '/../views/error/404.phtml',
             'error/index' => __DIR__ . '/../views/error/index.phtml',
         ),
         'template_path_stack' => array(
-            'core' => __DIR__ . '/../views',
+            'index' => __DIR__ . '/../views',
         ),
         'strategies' => array(
             'ViewJsonStrategy',
             'ViewFeedStrategy',
         ),
     ),
-    /*
-    'routes' => array(
-        'default' => array(
-
-            'type' => 'Core\Router\Http\Route',
-            'options' => array(
-                'route' => '/:controller/:action/*',
-                'defaults' => array(
-                    'controller' => 'error',
-                    'action' => 'index'
-                ),
-
-            ),
-
-
-
-            'type'    => 'Zend\Mvc\Router\Http\Segment',
-            'options' => array(
-                'route'    => '/[:controller[/:action]]',
-                'constraints' => array(
-                    'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                    'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-                ),
-                'defaults' => array(
-                    'controller' => 'index',
-                    'action'     => 'index',
-                ),
-            ),
-*/
-
-/*
-            'child_routes' => array(
-	            'params' => array(
-		            'type' => 'Zend\Mvc\Router\Http\Wildcard',
-
-		            'options' => array(
-                        'route'    => '/:controller/:action/*',
-                        'defaults' => array(
-                            'controller' => 'index',
-                            'action'     => 'index',
-                        ),
-                    ),
-
-		        ),
-            ),
-        ),
-        'home' => array(
-            'type' => 'Zend\Mvc\Router\Http\Literal',
-            'options' => array(
-                'route'    => '/',
-                'defaults' => array(
-                    'controller' => 'index',
-                    'action'     => 'index',
-                ),
-            ),
-        ),
-    ),*/
 );

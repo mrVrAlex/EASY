@@ -8,12 +8,14 @@ use Zend\ModuleManager\ModuleManager,
 class Module
 {
 
-    public function init(ModuleManager $moduleManager)
+    public function onBootstrap($e)
     {
-        $events       = $moduleManager->events();
+        $application        = $e->getParam('application');
+        $events       = $application->events();
         $sharedEvents = $events->getSharedManager();
-        $sharedEvents->attach('bootstrap', 'bootstrap', array($this, 'initializeView'), 100);
-        $sharedEvents->attach('bootstrap', 'bootstrap', array($this, 'initializeTranslator'), 101);
+        $sharedEvents->attach(__NAMESPACE__, 'dispatch', array($this, 'initializeView'),100);
+        $sharedEvents->attach(__NAMESPACE__, 'dispatch', array($this, 'initializeTranslator'), 101);
+        //$sharedEvents->attach('bootstrap', 'bootstrap', array($this, 'initializeTranslator'), 101);
     }
 
     public function getAutoloaderConfig()
@@ -42,11 +44,10 @@ class Module
     
     public function initializeView($e)
     {
-
         $app          = $e->getParam('application');
         $basePath     = '/';//$app->getRequest()->getBasePath();
-        $locator      = $app->getLocator();
-        $renderer     = $locator->get('Zend\View\Renderer\PhpRenderer');
+        $locator      = $app->getServiceManager();
+        $renderer     = $locator->get('viewrenderer');
         $renderer->plugin('basePath')->setBasePath($basePath);
                 //$view->plugin('headLink')->appendStylesheet($basePath . 'css/bootstrap.min.css');
         $renderer->plugin('headLink')->appendStylesheet($basePath . 'css/style.css');
@@ -55,60 +56,5 @@ class Module
         $favicon = '<link rel="shortcut icon" href="' . $basePath . 'images/favicon.ico">';
         $renderer->plugin('placeHolder')->__invoke('favicon')->set($favicon);
         $renderer->plugin('doctype')->__invoke('XHTML1_TRANSITIONAL');
-
-
-        /*
-        $app          = $e->getParam('application');
-        $locator      = $app->getLocator();
-        $config       = $e->getParam('config');
-        $view         = $this->getView($app);
-        \Zend\Dojo\Dojo::enableView($view);
-        $viewListener = $this->getViewListener($view, $config);
-        $app->events()->attachAggregate($viewListener);
-        $events       = StaticEventManager::getInstance();
-        $viewListener->registerStaticListeners($events, $locator);*/
-    }
-
-    protected function getViewListener($view, $config)
-    {
-        if ($this->viewListener instanceof View\Listener) {
-            return $this->viewListener;
-        }
-
-        $viewListener       = new View\Listener($view, $config->layout);
-        $viewListener->setDisplayExceptionsFlag($config->display_exceptions);
-
-        $this->viewListener = $viewListener;
-        return $viewListener;
-    }
-
-    protected function getView($app)
-    {
-        /*
-        if ($this->view) {
-            return $this->view;
-        }
-
-        $di     = $app->getLocator();
-        $view   = $di->get('view');
-        $url    = $view->plugin('url');
-        $url->setRouter($app->getRouter());
-
-        $view->plugin('headTitle')->setSeparator(' - ')
-                                  ->setAutoEscape(false)
-                                  ->append('Посто-деньги');
-
-        $basePath = $app->getRequest()->detectBaseUrl();
-
-        //$view->plugin('headLink')->appendStylesheet($basePath . 'css/bootstrap.min.css');
-        $view->plugin('headLink')->appendStylesheet($basePath . 'css/style.css');
-        $html5js = '<script src="' . $basePath . 'js/html5.js"></script>';
-        $view->plugin('placeHolder')->__invoke('html5js')->set($html5js);
-        $favicon = '<link rel="shortcut icon" href="' . $basePath . 'images/favicon.ico">';
-        $view->plugin('placeHolder')->__invoke('favicon')->set($favicon);
-        $view->plugin('doctype')->__invoke('XHTML1_TRANSITIONAL');
-
-        $this->view = $view;
-        return $view;*/
     }
 }

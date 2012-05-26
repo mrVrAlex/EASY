@@ -2,7 +2,7 @@
 return array(
     'modules' => array(
         'Core',
-        'AppUser',
+        //'AppUser',
         //'Client',
         //'Product',
         //'PHPExcel',
