@@ -12,8 +12,7 @@ class ProductController extends ActionController
     public function indexAction()
     {
 
-        $listProduct = $this->getLocator()->get('service-product')->getAllList();
-
+        $listProduct = $this->getServiceLocator()->get('service-product')->getAllList();
         return new ViewModel(array('listProducts'=>$listProduct));
     }
 

@@ -145,13 +145,13 @@ return array(
         'display_not_found_reason' => true,
         'display_exceptions' => true,
         //'doctype' => 'HTML5',
-        'not_found_template' => 'error/404',
-        'exception_template' => 'error/index',
+        'not_found_template' => 'core/error/404',
+        'exception_template' => 'core/error/index',
         'template_map' => array(
             'layout/layout' => __DIR__ . '/../views/layouts/layout.phtml',
             'core/index/index' => __DIR__ . '/../views/index/index.phtml',
-            'error/404' => __DIR__ . '/../views/error/404.phtml',
-            'error/index' => __DIR__ . '/../views/error/index.phtml',
+            'core/error/404' => __DIR__ . '/../views/error/404.phtml',
+            'core/error/index' => __DIR__ . '/../views/error/index.phtml',
         ),
         'template_path_stack' => array(
             'index' => __DIR__ . '/../views',

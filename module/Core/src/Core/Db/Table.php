@@ -16,8 +16,7 @@ abstract class Table extends TableGateway {
 
     protected $tableName;
 
-    public function __construct(Adapter $adapter = null, $databaseSchema = null,
-    ResultSet $selectResultPrototype = null)
+    public function __construct(Adapter $adapter = null, $databaseSchema = null, ResultSet $selectResultPrototype = null)
     {
     return parent::__construct($this->tableName, $adapter, $databaseSchema,
     $selectResultPrototype);

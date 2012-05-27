@@ -13,7 +13,8 @@ class Module
         $application        = $e->getParam('application');
         $events       = $application->events();
         $sharedEvents = $events->getSharedManager();
-        $sharedEvents->attach(__NAMESPACE__, 'dispatch', array($this, 'initializeView'),100);
+        $this->initializeView($e);
+        //$sharedEvents->attach('application', 'bootstrap', array($this, 'initializeView'),100);
         $sharedEvents->attach(__NAMESPACE__, 'dispatch', array($this, 'initializeTranslator'), 101);
         //$sharedEvents->attach('bootstrap', 'bootstrap', array($this, 'initializeTranslator'), 101);
     }
@@ -41,6 +42,8 @@ class Module
     {
         return include __DIR__ . '/config/module.config.php';
     }
+
+
     
     public function initializeView($e)
     {

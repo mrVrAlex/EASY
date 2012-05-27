@@ -1,5 +1,13 @@
 <?php
 return array(
+    'view_manager' => array(
+        'template_map' => array(
+            'product/product/index' => __DIR__ . '/../views/product/index.phtml',
+        ),
+        'template_path_stack' => array(
+            'product' => __DIR__ . '/../views',
+        ),
+    ),
     'di' => array(
         'instance' => array(
             'alias' => array(
@@ -68,7 +76,7 @@ return array(
             'Zend\View\Resolver\TemplatePathStack' => array(
                 'parameters' => array(
                     'paths'  => array(
-                        'product' => __DIR__ . '/../views',
+                        'product/product' => __DIR__ . '/../views',
                     ),
                 ),
             ),

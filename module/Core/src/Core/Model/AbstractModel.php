@@ -8,7 +8,13 @@
  */
 namespace Core\Model;
 
-class AbstractModel implements \ArrayAccess
+use Zend\Stdlib\ArrayUtils,
+    Zend\Db\ResultSet\RowObjectInterface,
+    DateTime,
+    InvalidArgumentException,
+    ArrayAccess;
+
+class AbstractModel implements ArrayAccess, RowObjectInterface
 {
     /**
      * Setter/Getter underscore transformation cache
@@ -86,7 +92,7 @@ class AbstractModel implements \ArrayAccess
         return false;
     }
 
-    public function getData($key,$index=null){
+    public function getData($key='',$index=null){
 
         if (''===$key) {
             return $this->_data;
@@ -147,9 +153,9 @@ class AbstractModel implements \ArrayAccess
             case 'uns' :
                 //Varien_Profiler::start('UNS: '.get_class($this).'::'.$method);
                 $key = $this->_underscore(substr($method,3));
-                $result = $this->unsetData($key);
+                //$result = $this->unsetData($key);
                 //Varien_Profiler::stop('UNS: '.get_class($this).'::'.$method);
-                return $result;
+                return '';
 
             case 'has' :
                 //Varien_Profiler::start('HAS: '.get_class($this).'::'.$method);
@@ -180,10 +186,27 @@ class AbstractModel implements \ArrayAccess
         self::$_underscoreCache[$name] = $result;
         return $result;
     }
+    public function count() {
+        return count($this->getData());
+    }
+
+    public function populate(array $array) {
+        $this->exchangeArray($array);
+    }
+
+    public function exchangeArray($array) {
+        foreach ($array as $key => $value) {
+            //$setter = static::fieldToSetterMethod($key);
+            //if (is_callable(array($this, $setter))) {
+            $var = $this->_underscore($key);
+            $this->setData($var, $value);
+            //}
+        }
+    }
 
     protected function _camelize($name)
     {
-        return uc_words($name, '');
+        return \Core\Service\Core::toCamelCase($name); //uc_words($name, '');
     }
 
     /**
@@ -210,6 +233,19 @@ class AbstractModel implements \ArrayAccess
         $var = $this->_underscore($var);
         $this->setData($var, $value);
     }
+
+    public function setData($key, $value=null)
+    {
+        //$this->_hasDataChanges = true;
+        if(is_array($key)) {
+            $this->_data = $key;
+        } else {
+            $this->_data[$key] = $value;
+        }
+        return $this;
+    }
+
+
 
 
 }
