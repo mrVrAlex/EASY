@@ -50,7 +50,15 @@ class Module
         $app          = $e->getParam('application');
         $basePath     = '/';//$app->getRequest()->getBasePath();
         $locator      = $app->getServiceManager();
+        /**
+         * @var $renderer \Zend\View\Renderer\PhpRenderer
+         */
         $renderer     = $locator->get('viewrenderer');
+        $broker = $renderer->getBroker();//etBroker($locator->get('Zend\View\HelperBroker'));
+        $broker->register('userInfo',new \AppUser\View\Helper\UserInfo());
+        \Zend\View\HelperLoader::addStaticMap(array(
+                                 'userInfo' => 'AppUser\View\Helper\UserInfo'
+                             ));
         $renderer->plugin('basePath')->setBasePath($basePath);
                 //$view->plugin('headLink')->appendStylesheet($basePath . 'css/bootstrap.min.css');
         $renderer->plugin('headLink')->appendStylesheet($basePath . 'css/style.css');

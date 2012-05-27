@@ -19,36 +19,22 @@ return array(
 
             'AppUser\View\Helper\UserInfo' => array(
                 'parameters' => array(
-                    'view' => 'viewRenderer'
+                    'view' => 'viewrenderer'
                 ),
             ),
-            'Zend\View\HelperLoader' => array(
+            'Zend\View\Helper\Loader' => array(
                  'parameters' => array(
                     'map' => array(
                          'userInfo' => 'AppUser\View\Helper\UserInfo'
                      ),
                  ),
             ),
-            'Zend\View\HelperBroker' =>array(
+            'Zend\View\HelperBroker' => array(
                 'parameters' => array(
-                        'loader' => 'Zend\View\HelperLoader',
-                        'register_plugins_on_load' => true,
-                        //'plugins' => array('userInfo'=>'AppUser\View\Helper\UserInfo'),
-
-                    //'locator' => '\Zend\Di\Di'
+                    'loader' => 'Zend\View\HelperLoader',
                 ),
             ),
 
-            'viewRenderer' => array(
-                'parameters' => array(
-                    'options'  => array(
-                        'script_paths' => array(
-                            'user' => __DIR__ . '/../views',
-                        ),
-                        'broker' => 'Zend\View\HelperBroker'
-                    ),
-                ),
-            ),
             'Zend\View\Resolver\TemplatePathStack' => array(
                 'parameters' => array(
                     'paths'  => array(
@@ -60,7 +46,7 @@ return array(
                 'parameters' => array(
                    // 'authenticationService' => '\Zend\Authentication\AuthenticationService'
                 )
-            ),
+            ),/*
             'Zend\Mvc\Controller\PluginLoader' => array(
                 'parameters' => array(
                     'plugins' => array(
@@ -68,7 +54,7 @@ return array(
                         'locator' => '\Zend\Di\Di'
                     ),
                 ),
-            ),
+            ),*/
 
 
 
@@ -77,4 +63,6 @@ return array(
     'routes' => array(
 
     )
+
+
 );

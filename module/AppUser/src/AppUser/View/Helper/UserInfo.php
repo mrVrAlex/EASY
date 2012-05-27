@@ -16,7 +16,7 @@ class UserInfo extends AbstractHelper {
 
     public function __invoke(){
         $html = '';
-        $auth = $this->getView()->getBroker()->getLocator()->get('auth-service');
+        $auth = $this->getView()->getBroker()->getServiceLocator()->get('auth-service');
         if ($auth->hasIdentity()){
             $info = $auth->getIdentity();
             $logout = $this->getView()->url('default', array('controller' => 'user', 'action' => 'logout'));

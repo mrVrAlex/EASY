@@ -153,6 +153,7 @@ return array(
             'core/error/404' => __DIR__ . '/../views/error/404.phtml',
             'core/error/index' => __DIR__ . '/../views/error/index.phtml',
         ),
+        'broker' => 'Zend\View\HelperBroker',
         'template_path_stack' => array(
             'index' => __DIR__ . '/../views',
         ),
