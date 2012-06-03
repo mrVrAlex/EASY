@@ -12,9 +12,10 @@ use Zend\Stdlib\ArrayUtils,
     Zend\Db\ResultSet\RowObjectInterface,
     DateTime,
     InvalidArgumentException,
-    ArrayAccess;
+    ArrayAccess,
+    Zend\Db\ResultSet\ResultSet;
 
-class AbstractModel implements ArrayAccess, RowObjectInterface
+abstract class AbstractModel implements ArrayAccess, RowObjectInterface
 {
     /**
      * Setter/Getter underscore transformation cache
@@ -30,7 +31,31 @@ class AbstractModel implements ArrayAccess, RowObjectInterface
      */
     protected $_isDeleted = false;
 
+    protected $_tableName;
+    protected $_mainModelTable;
+    protected $_initialized = false;
+    protected $_adapter;
+
     protected $_data = array();
+
+
+    public function setAdapter($adapter)
+    {
+        $this->_adapter = $adapter;
+    }
+
+    public function getAdapter()
+    {
+        return $this->_adapter;
+    }
+
+    protected function init(){
+        $nameModelTable = $this->getFullTableName();
+        $this->_mainModelTable = new $nameModelTable($this->getAdapter(),null,new ResultSet(clone $this));
+        $this->_initialized = true;
+    }
+
+    abstract protected function getFullTableName();
 
     /**
      * Implementation of ArrayAccess::offsetSet()

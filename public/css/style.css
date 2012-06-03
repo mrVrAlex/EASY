@@ -185,11 +185,6 @@ table td {
     font-weight: 700;
 	padding: 4px 6px;
 }
-.alert-success {
-    background-color: #DFF0D8;
-    border-color: #D6E9C6;
-    color: #468847;
-}
 .alert {
     background-color: #FCF8E3;
     border: 1px solid #FBEED5;
@@ -198,4 +193,9 @@ table td {
     margin-bottom: 18px;
     padding: 8px 35px 8px 14px;
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+.alert-success {
+    background-color: #DFF0D8;
+    border-color: #D6E9C6;
+    color: #468847;
 }

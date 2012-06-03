@@ -18,7 +18,6 @@ class Product {
 
     public function getAllList(){
         $collection = new Db\Collection($this->getProductTable());
-
         return $collection->load();
     }
 

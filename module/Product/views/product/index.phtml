@@ -6,7 +6,7 @@ $this->headTitle($title);
 
 <ul>
     <?php foreach ($this->listProducts as $row): ?>
-        <li><a class="btn" href="/client/add/product/<?php echo $row['id']; ?>"><?php echo $row['product_name']; ?></a></li>
+        <li><a class="btn" href="<?php echo $this->url('product',array('controller'=>'credit','action'=>'step1'));?>"><?php echo $row['product_name']; ?></a></li>
     <?php endforeach; ?>
 </ul>
 <p>&nbsp;</p>

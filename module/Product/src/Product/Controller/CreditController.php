@@ -3,7 +3,8 @@
 namespace Product\Controller;
 
 use Zend\Mvc\Controller\ActionController,
-    Zend\View\Model\ViewModel;
+    Zend\View\Model\ViewModel,
+    Core\Module as App;
 
 class CreditController extends ActionController
 {
@@ -26,13 +27,14 @@ class CreditController extends ActionController
         return new ViewModel();
     }
     public function step1Action(){
-        $product_id = $this->getRequest()->getMetadata('product', 1);
-
-        $serviceClient = $this->getLocator()->get('service-client');
-        $data = $serviceClient->test();
-        $form = new \Client\Form\AddForm();
-        $form->product_id->setValue($this->_productId);
-        return new ViewModel(array('formClient'=>$form,'dataTest'=>$data));
+        //$product_id = $this->getRequest()->getMetadata('product', 1);
+        $modelClient = App::getModel('Client/Client');
+        $data = $modelClient->load(6);
+        //$serviceClient = $this->getLocator()->get('service-client');
+        //$data = $serviceClient->test();
+        //$form = new \Client\Form\AddForm();
+        //$form->product_id->setValue($this->_productId);
+        return new ViewModel(array('formClient'=>'','dataTest'=>$data));
     }
 
     public function step2Action(){

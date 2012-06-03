@@ -31,7 +31,7 @@ form div {
 <?php $this->headStyle()->captureEnd() ?>
 <h1><?php echo $this->escape($title); ?></h1>
 
-    <?php  $form = $this->formClient; ?>
+    <?php  //$form = $this->formClient; ?>
 <!--
 <div class="">
 <h4>Суммарная информация</h4>
@@ -40,28 +40,28 @@ form div {
 <!--<?php /*echo $this->formErrors($form->lastname->getMessages());*/ ?>-->
 <!-- <input type="text" name="lastname" id="lastname" /> -->
 <form action="" method="post" enctype="multipart/form-data" name="form1" id="form1">
-    <?php echo $form->product_id->render(); ?>
+    <?php //echo $form->product_id->render(); ?>
      <div>
-       <label for="lastname"><?php echo $form->lastname->getLabel();?></label>
-         <?php echo $form->lastname->render(); ?>
+       <label for="lastname"><?php //echo //$form->lastname->getLabel();?></label>
+         <?php //echo $form->lastname->render(); ?>
      </div>
     <div>
-      <label for="firstname"><?php echo $form->firstname->getLabel();?></label>
-        <?php echo $form->firstname->render(); ?>
+      <label for="firstname"><?php //echo //$form->firstname->getLabel();?></label>
+        <?php //echo //$form->firstname->render(); ?>
     </div>
     <div>
-      <label for="patronymic"><?php echo $form->patronymic->getLabel();?></label>
-        <?php echo $form->patronymic->render(); ?>
-    </div>
-
-    <div>
-        <label for="patronymic"><?php echo $form->birthdate->getLabel();?></label>
-        <?php echo $form->birthdate->render(); ?>
+      <label for="patronymic"><?php //echo $form->patronymic->getLabel();?></label>
+        <?php //echo $form->patronymic->render(); ?>
     </div>
 
     <div>
-           <label for="passport"><?php echo $form->passport->getLabel();?></label>
-             <?php echo $form->passport->render(); ?>
+        <label for="patronymic"><?php //echo $form->birthdate->getLabel();?></label>
+        <?php //echo $form->birthdate->render(); ?>
+    </div>
+
+    <div>
+           <label for="passport"><?php //echo $form->passport->getLabel();?></label>
+             <?php //echo $form->passport->render(); ?>
     </div>
 
     <!-- <div>
@@ -74,13 +74,13 @@ form div {
      </div> -->
 
     <div>
-           <label for="address_reg"><?php echo $form->address_reg->getLabel();?></label>
-             <?php echo $form->address_reg->render(); ?>
+           <label for="address_reg"><?php //echo $form->address_reg->getLabel();?></label>
+             <?php //echo $form->address_reg->render(); ?>
     </div>
 
     <div>
-           <label for="address_real"><?php echo $form->address_real->getLabel();?></label>
-             <?php echo $form->address_real->render(); ?>
+           <label for="address_real"><?php //echo $form->address_real->getLabel();?></label>
+             <?php //echo $form->address_real->render(); ?>
     </div>
 <!--
      <div>
@@ -99,19 +99,19 @@ form div {
      </div>
      -->
     <div>
-      <label for="loan_amount"><?php echo $form->loan_amount->getLabel();?></label>
-        <?php echo $form->loan_amount->render(); ?>
+      <label for="loan_amount"><?php //echo $form->loan_amount->getLabel();?></label>
+        <?php //echo $form->loan_amount->render(); ?>
     </div>
     <div>
-      <label for="loan_term"><?php echo $form->loan_term->getLabel();?></label>
-        <?php echo $form->loan_term->render(); ?>
+      <label for="loan_term"><?php //echo $form->loan_term->getLabel();?></label>
+        <?php //echo $form->loan_term->render(); ?>
     </div>
      <!-- <div>
        <label for="yescopy">Копия документа на согласие</label>
        <input type="file" name="yescopy" id="yescopy" />
      </div> -->
      <div>
-         <?php echo $form->submit->render(); ?>
+         <?php //echo $form->submit->render(); ?>
      </div>
    </form>
    <pre> <?php var_dump($this->dataTest);?> </pre>

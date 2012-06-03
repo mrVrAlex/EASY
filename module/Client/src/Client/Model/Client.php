@@ -18,37 +18,20 @@ class Client extends AbstractModel
     /**
      * @var ClientTable
      */
-    protected $_table;
+    protected $_tableName = 'ClientTable';
 
     protected $_attributes = array();
 
     public function load($id){
-
-        //$this->getTable()->getTable()
-        //$sql = new Sql\Sql($this->getTable()->getAdapter(), $this->getTable()->getTable(),$this->getTable()->getAdapter()->getPlatform());
-        //var_export($sql);
-        //print_r($sql->getTable());
-        //$sql->select($this->getTable()->getTable());// =
-        $sql = $this->getTable()->getSql()->select();
-        //$sql->join('eav_attribute','eav_attribute.entity_type_id = client_entity.entity_type_id',$sql::SQL_STAR,$sql::JOIN_LEFT);
-        //$sql->join('client_entity_value','eav_attribute.attribute_id = client_entity_value.attribute_id',$sql::SQL_STAR,$sql::JOIN_LEFT);
-        $this->getTable()->initialize();
-        return $this->getTable()->select();
+        if (!$this->_initialized){
+            $this->init();
+        }
+        return $this->_mainModelTable->select(array('id = ?'=>$id))->current();
     }
 
-
-
-
-    public function setTable($table)
-    {
-        $this->_table = $table;
+    protected function getFullTableName(){
+        return __NAMESPACE__ . "\\" . $this->_tableName;
     }
-    /**
-     * @return ClientTable
-     */
-    public function getTable()
-    {
-        return $this->_table;
-    }
+
 
 }

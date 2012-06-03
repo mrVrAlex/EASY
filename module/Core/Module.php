@@ -77,9 +77,9 @@ class Module
         $renderer     = $locator->get('viewrenderer');
         $broker = $renderer->getBroker();//etBroker($locator->get('Zend\View\HelperBroker'));
         $broker->register('userInfo',new \AppUser\View\Helper\UserInfo());
-        \Zend\View\HelperLoader::addStaticMap(array(
-                                 'userInfo' => 'AppUser\View\Helper\UserInfo'
-                             ));
+        //\Zend\View\HelperLoader::addStaticMap(array(
+        //                         'userInfo' => 'AppUser\View\Helper\UserInfo'
+        //                     ));
         $renderer->plugin('basePath')->setBasePath($basePath);
         //$renderer->plugin('headLink')->appendStylesheet($basePath . 'css/bootstrap.min.css');
         $renderer->plugin('headLink')->appendStylesheet($basePath . 'css/style.css');

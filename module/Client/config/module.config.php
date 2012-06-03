@@ -12,6 +12,10 @@ return array(
                    // 'clientHistory' => 'Client\Model\ClientHistoryTable',
                 ),
             ),
+            'Client\Model\Client' => array(
+                            'parameters' => array(
+                                'adapter' => 'db-config',
+                        )),
             'Client\Model\ClientTable' => array(
                 'parameters' => array(
                     'adapter' => 'db-config',

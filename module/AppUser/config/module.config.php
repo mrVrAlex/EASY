@@ -31,18 +31,18 @@ return array(
                             )
             ),
 
-            'AppUser\View\Helper\UserInfo' => array(
-                'parameters' => array(
-                    'view' => 'viewrenderer'
-                ),
-            ),
-            'Zend\View\Helper\Loader' => array(
+            //'AppUser\View\Helper\UserInfo' => array(
+            //    'parameters' => array(
+            //        'view' => 'viewrenderer'
+            //    ),
+            //),
+            'Zend\View\HelperLoader' => array(
                  'parameters' => array(
                     'map' => array(
                          'userInfo' => 'AppUser\View\Helper\UserInfo'
                      ),
                  ),
-            ),
+            ),/*
             'Zend\View\HelperBroker' => array(
                 'parameters' => array(
                     'loader' => 'Zend\View\HelperLoader',

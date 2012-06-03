@@ -3,9 +3,26 @@ return array(
     'view_manager' => array(
         'template_map' => array(
             'product/product/index' => __DIR__ . '/../views/product/index.phtml',
+            'product/credit/index' => __DIR__ . '/../views/credit/index.phtml',
+            'product/credit/step1' => __DIR__ . '/../views/credit/step1.phtml',
         ),
         'template_path_stack' => array(
             'product' => __DIR__ . '/../views',
+            'credit' => __DIR__ . '/../views',
+        ),
+    ),
+    'router' => array(
+        'routes' => array(
+            'product' => array(
+                'type'    => 'Core\Router\Http\Route',
+                'options' => array(
+                    'route'    => '/product/:controller/:action/*',
+                    'defaults' => array(
+                        'controller' => 'Product\Controller\ProductController',
+                        'action' => 'index'
+                    ),
+                ),
+            ),
         ),
     ),
     'di' => array(
