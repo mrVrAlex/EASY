@@ -45,6 +45,15 @@
     </div>
   </div>
   <div id="contentBox">
+      <?php if (count($this->messages) > 0): ?>
+      <div class="alert alert-success">
+        <ul>
+            <?php foreach($this->messages as $message): ?>
+                <li><?php echo $message;?></li>
+            <?php endforeach; ?>
+        </ul>
+      </div>
+      <?php endif; ?>
       <?php echo $this->content; ?>
   </div>
 </div>

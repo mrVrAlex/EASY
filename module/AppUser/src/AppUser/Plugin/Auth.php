@@ -2,10 +2,11 @@
 
 namespace AppUser\Plugin;
 
-use \Zend\Authentication\AuthenticationService,
-     \Zend\EventManager\StaticEventManager;
+use Zend\Mvc\Controller\Plugin\AbstractPlugin,
+    Zend\Authentication\AuthenticationService,
+    Zend\Authentication\Adapter\DbTable as AuthAdapter;
 
-class Auth
+class Auth extends AbstractPlugin
 {
     protected $app;
 /**
@@ -43,12 +44,13 @@ class Auth
             //if (!empty($roleName)) {
             //    $this->getAcl()->setCurrentRole(new \Zend\Acl\Role\GenericRole($roleName));
             //}
+
 		return;
         }
         
         // \Zend\View\Helper\Navigation\AbstractHelper::setDefaultRole($this->getAcl()->getCurrentRole());
         
-        $locator = $event->getTarget()->getLocator();
+        $locator = $event->getTarget()->getServiceManager();
         //if($locator->instanceManager()->hasAlias('sysmap-service')) {
             //$currentResource = $locator->get('sysmap-service')->getIdentifierByRequest($event->getRouteMatch());
 
@@ -61,12 +63,13 @@ class Auth
 
                 $controller = $event->getRouteMatch()->getParam('controller');
                 $action = $event->getRouteMatch()->getParam('action');
-                $in = $event->getTarget()->getLocator()->instanceManager();
+                $in = $event->getTarget()->getServiceManager()->get('Di')->instanceManager();
                 $foundController = $in->hasAlias($controller);
                 $foundAction = false;
 
                 if($foundController) {
-                    $controllerInstance = $event->getTarget()->getLocator()->get($controller);
+                    //die('ddd');
+                    $controllerInstance = $event->getTarget()->getServiceManager()->get($controller);
                     $method = \Zend\Mvc\Controller\ActionController::getMethodFromAction($action);
                     if (method_exists($controllerInstance, $method)) {
                         $foundAction = true;

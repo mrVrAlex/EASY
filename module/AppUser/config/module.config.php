@@ -1,5 +1,13 @@
 <?php
 return array(
+    'view_manager' => array(
+        'template_map' => array(
+            //'product/product/index' => __DIR__ . '/../views/product/index.phtml',
+        ),
+        'template_path_stack' => array(
+            'user' => __DIR__ . '/../views',
+        ),
+    ),
     'di' => array(
         'instance' => array(
             'alias' => array(
@@ -16,6 +24,12 @@ return array(
                 'parameters' => array(
                     'adapter' => 'db-config',
             )),
+
+            'AppUser\Model\User' => array(
+                'parameters' => array(
+                                    'adapter' => 'db-config',
+                            )
+            ),
 
             'AppUser\View\Helper\UserInfo' => array(
                 'parameters' => array(

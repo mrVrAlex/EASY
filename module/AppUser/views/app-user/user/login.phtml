@@ -1,0 +1,41 @@
+<?php
+$title = 'Вход в систему.';
+$this->headTitle($title);
+?>
+<?php $this->headStyle()->captureStart() ?>
+#enterBox {
+    margin: 0 auto;
+    width: 480px;
+}
+<?php $this->headStyle()->captureEnd() ?>
+<div id="enterBox">
+<h2><?php echo $this->escape($title); ?></h2>
+    <?php
+    $form = $this->form;
+    //$form->setAttribute('action', $this->url('album', array('action' => 'add')));
+    echo $this->form()->openTag($form);
+    ?>
+
+<div>
+    <?php echo $this->formLabel($form->get('login')); ?>
+    <?php
+        echo $this->formInput($form->get('login'));
+        echo $this->formElementErrors($form->get('login'));
+    ?>
+</div>
+    <div>
+    <?php echo $this->formLabel($form->get('password')); ?>
+    <?php
+        echo $this->formInput($form->get('password'));
+        echo $this->formElementErrors($form->get('password'));
+    ?>
+    </div>
+    <div>
+    <?php
+        echo $this->formInput($form->get('submit'));
+        echo $this->formElementErrors($form->get('submit'));
+    ?>
+    </div>
+    <?php echo $this->form()->closeTag($form); ?>
+    <p>&nbsp;</p>
+</div>

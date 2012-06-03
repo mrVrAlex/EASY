@@ -27,21 +27,24 @@ class UserController extends ActionController
 
         $request = $this->getRequest();
         if ($request->isPost()) {
-            $formData = $request->post()->toArray();
-            if ($form->isValid($formData)) {
-                $login = $form->getValue('login');
-                $password  = $form->getValue('password');
+            //$formData = $request->post()->toArray();
+            $form->setData($request->post());
+            $form->setInputFilter($form->getCustomInputFilter());
+            if ($form->isValid()) {
+                $data = $form->getData();
+                //$login = $form->getValue('login');
+                //$password  = $form->getValue('password');
 
-            $authAdapter = $this->_getAuthAdapter($login, $password);
-            $result = $this->getLocator()->get('auth-service')->authenticate($authAdapter);
+            $authAdapter = $this->_getAuthAdapter($data['login'], $data['password']);
+            $result = $this->getServiceLocator()->get('auth-service')->authenticate($authAdapter);
             if (!$result->isValid()) {
-                $form->setDecorators(array('Errors', 'FormElements', 'FormDecorator'));
-                $form->addError('Wrong combination of username and password');
+                //$form->setDecorators(array('Errors', 'FormElements', 'FormDecorator'));
+                $form->setMessages(array('password'=>array('Wrong combination of username and password')));//addError('Wrong combination of username and password');
             } else {
-                $userModel = $this->getLocator()->get('AppUser\Model\UserTable');
+                $userModel = \Core\Module::getModel('AppUser/User');//$this->getServiceLocator()->get('AppUser\Model\UserTable');
                 $identity = $authAdapter->getResultRowObject(null, 'password');
-                $identity = $userModel->getUserInfo($identity->id);
-                $this->getLocator()->get('auth-service')->getStorage()->write($identity);
+                $identity = $userModel->load($identity->id);
+                $this->getServiceLocator()->get('auth-service')->getStorage()->write($identity);
 
                 $this->flashMessenger(array())->addMessage('You are successful logged!');
                 // Redirect to list of albums
@@ -60,7 +63,7 @@ class UserController extends ActionController
 
     protected function _getAuthAdapter($login, $password)
     {
-       $dbAdapter = $this->getLocator()->get('db-config');
+       $dbAdapter = $this->getServiceLocator()->get('db-config');
 	$authAdapter = new \Zend\Authentication\Adapter\DbTable($dbAdapter);
 	$authAdapter->setTableName('users')
 			->setIdentityColumn('login')
@@ -73,8 +76,9 @@ class UserController extends ActionController
 
     public function logoutAction()
     {
-        $this->getLocator()->get('auth-service')->clearIdentity();
+        $this->getServiceLocator()->get('auth-service')->clearIdentity();
         $this->redirect(array())->toRoute('default',array('action' => 'login', 'controller'=>'user'));
+        return new \Zend\View\Model\JsonModel(array());
     }
 
     public function addAction()

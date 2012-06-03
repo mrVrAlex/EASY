@@ -7,6 +7,7 @@ use Zend\ModuleManager\ModuleManager,
 
 class Module
 {
+    static protected $_app = null;
 
     public function onBootstrap($e)
     {
@@ -14,8 +15,10 @@ class Module
         $events       = $application->events();
         $sharedEvents = $events->getSharedManager();
         $this->initializeView($e);
+        $this->initializeTranslator($e);
+        self::$_app = $application;
         //$sharedEvents->attach('application', 'bootstrap', array($this, 'initializeView'),100);
-        $sharedEvents->attach(__NAMESPACE__, 'dispatch', array($this, 'initializeTranslator'), 101);
+        //$sharedEvents->attach('application', 'dispatch', array($this, 'initializeTranslator'), -1);
         //$sharedEvents->attach('bootstrap', 'bootstrap', array($this, 'initializeTranslator'), 101);
     }
 
@@ -43,6 +46,24 @@ class Module
         return include __DIR__ . '/config/module.config.php';
     }
 
+    /**
+     * @static
+     * @param $name
+     * @return Model\AbstractModel
+     * @throws \ErrorException
+     */
+    public static function getModel($name){
+        $sm = self::$_app->getServiceManager();
+        $di = $sm->get('Di');
+        $arr = explode('/',$name);
+
+        $model = $di->get($arr[0]."\\Model\\".$arr[1]);
+        if ($model instanceof Model\AbstractModel){
+            return $model;
+        }
+        throw new \ErrorException('Not found model '.$name);
+    }
+
 
     
     public function initializeView($e)
@@ -60,7 +81,7 @@ class Module
                                  'userInfo' => 'AppUser\View\Helper\UserInfo'
                              ));
         $renderer->plugin('basePath')->setBasePath($basePath);
-                //$view->plugin('headLink')->appendStylesheet($basePath . 'css/bootstrap.min.css');
+        //$renderer->plugin('headLink')->appendStylesheet($basePath . 'css/bootstrap.min.css');
         $renderer->plugin('headLink')->appendStylesheet($basePath . 'css/style.css');
         $html5js = '<script src="' . $basePath . 'js/html5.js"></script>';
         $renderer->plugin('placeHolder')->__invoke('html5js')->set($html5js);

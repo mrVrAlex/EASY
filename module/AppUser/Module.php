@@ -17,7 +17,11 @@ class Module
         $events       = $moduleManager->events();
         $sharedEvents = $events->getSharedManager();
         $sharedEvents->attach('bootstrap', 'bootstrap', array($this, 'initializePlugins'), 101);
-        //$sharedEvents->attach('Zend\Mvc\Application','route', array($this, 'postRoute'), 1);
+        $sharedEvents->attach('Zend\Mvc\Application','route', array($this, 'postRoute'), 1);
+    }
+
+    public function onBootstrap($e){
+        $this->initializePlugins($e);
     }
 
 
@@ -40,12 +44,30 @@ class Module
         return new Config(include __DIR__ . '/config/module.config.php');
     }
 
+    public function getServiceConfiguration()
+    {
+        return array(
+            'factories' => array(
+                'auth-plugin' => function ($sm) {
+                    $di = $sm->get('Di');
+                    $plugin = $di->get('AppUser\Plugin\Auth');
+                    return $plugin;
+                },
+                'user-table' => function($sm) {
+                                    $dbAdapter = $sm->get('db-config');
+                                    $table = new Model\UserTable($dbAdapter);
+                                    return $table;
+                                },
+            ),
+        );
+    }
+
     public function initializePlugins($e)
     {
-        $locator = $e->getParam('application')->getLocator();
+        $locator = $e->getParam('application')->getServiceManager();
         //@TODO clean refactoring when ZF2.0 releaze
         //\Zend\Registry::set('locator',$locator);
-        $this->authPlugin = $locator->get('AppUser\Plugin\Auth');
+        $this->authPlugin = $locator->get('auth-plugin');
         $this->authPlugin->setApplication($e->getParam('application'));
 	    //\Zend\Db\Table\AbstractTable::setDefaultAdapter($locator->get('Zend\Db\Adapter\PdoMysql'));
         //\Zend\View\HelperLoader

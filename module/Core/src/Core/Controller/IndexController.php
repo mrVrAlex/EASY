@@ -9,6 +9,7 @@ class IndexController extends ActionController
 {
     public function indexAction()
     {
+        $this->layout()->messages = $this->flashMessenger()->getMessages();
         return new ViewModel();
     }
 }

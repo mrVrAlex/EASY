@@ -11,7 +11,7 @@ class UserTable extends DbTable
 
     public function getUserInfo($id){
         $user = $this->getUser($id);
-        $select = $this->select()->setIntegrityCheck(false)->from('users')->join('branch','branch.id = users.branch_id',array('name'))->where('users.id = ?',$user['id']);
+        $select = $this->select()->from('users')->join('branch','branch.id = users.branch_id',array('name'))->where('users.id = ?',$user['id']);
         $row = $this->fetchRow($select);
         //$row->toArray();
         return array('id'=>$row->id,'login'=>$row->login,'branch_name'=>$row->name,'branch_id'=>$row->branch_id);

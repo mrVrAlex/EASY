@@ -3,7 +3,7 @@ return array(
     'modules' => array(
         'Core',
         'AppUser',
-        //'Client',
+        'Client',
         'Product',
         //'PHPExcel',
        // 'ZendDeveloperTools'
