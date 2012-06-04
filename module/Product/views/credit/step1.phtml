@@ -31,7 +31,7 @@ form div {
 <?php $this->headStyle()->captureEnd() ?>
 <h1><?php echo $this->escape($title); ?></h1>
 
-    <?php  //$form = $this->formClient; ?>
+    <?php $form = $this->formClient; ?>
 <!--
 <div class="">
 <h4>Суммарная информация</h4>
@@ -42,16 +42,25 @@ form div {
 <form action="" method="post" enctype="multipart/form-data" name="form1" id="form1">
     <?php //echo $form->product_id->render(); ?>
      <div>
-       <label for="lastname"><?php //echo //$form->lastname->getLabel();?></label>
-         <?php //echo $form->lastname->render(); ?>
+       <label for="lastname"><?php echo $this->formLabel($form->get('lastname'));?></label>
+         <?php
+             echo $this->formInput($form->get('lastname'));
+             echo $this->formElementErrors($form->get('lastname'));
+         ?>
      </div>
     <div>
-      <label for="firstname"><?php //echo //$form->firstname->getLabel();?></label>
-        <?php //echo //$form->firstname->render(); ?>
+      <label for="firstname"><?php echo $this->formLabel($form->get('firstname'));?></label>
+        <?php
+            echo $this->formInput($form->get('firstname'));
+            echo $this->formElementErrors($form->get('firstname'));
+        ?>
     </div>
     <div>
-      <label for="patronymic"><?php //echo $form->patronymic->getLabel();?></label>
-        <?php //echo $form->patronymic->render(); ?>
+      <label for="patronymic"><?php echo $this->formLabel($form->get('patronymic'));?></label>
+        <?php
+            echo $this->formInput($form->get('patronymic'));
+            echo $this->formElementErrors($form->get('patronymic'));
+        ?>
     </div>
 
     <div>
@@ -111,7 +120,10 @@ form div {
        <input type="file" name="yescopy" id="yescopy" />
      </div> -->
      <div>
-         <?php //echo $form->submit->render(); ?>
+         <?php
+              echo $this->formInput($form->get('submit'));
+              echo $this->formElementErrors($form->get('submit'));
+          ?>
      </div>
    </form>
    <pre> <?php var_dump($this->dataTest);?> </pre>

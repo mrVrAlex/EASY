@@ -1,0 +1,24 @@
+<?php
+$title = '5. Данные о работе.';
+$this->headTitle($title);
+?>
+<h2><?php echo $this->escape($title); ?></h2>
+<form id="form1" name="form1" method="post" action="">
+<div class="label">Рабочий телефон: <span>(8482) 74-88-04</span></div>
+<div class="label">Имя руководителя: <span>АлВасМас</span></div>
+<div class="label">Заявленный оклад: <span>100500</span></div>
+<div class="label">Результат:
+<span><label>
+  <input type="radio" name="result" id="result" value="1">
+  Одобрено</label>
+<label>
+  <input type="radio" name="result" id="result1" value="0">
+  Отказано</label></span>
+</div>
+<label class="standalone">Комментарий:
+<textarea name="comment" id="comment" cols="45" rows="5"></textarea>
+</label>
+<div>
+<input type="submit" value="Далее" class="button white">
+</div>
+</form>

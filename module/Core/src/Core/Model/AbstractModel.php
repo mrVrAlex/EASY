@@ -34,6 +34,7 @@ abstract class AbstractModel implements ArrayAccess, RowObjectInterface
     protected $_tableName;
     protected $_mainModelTable;
     protected $_initialized = false;
+    protected $_loaded = false;
     protected $_adapter;
 
     protected $_data = array();
@@ -53,6 +54,18 @@ abstract class AbstractModel implements ArrayAccess, RowObjectInterface
         $nameModelTable = $this->getFullTableName();
         $this->_mainModelTable = new $nameModelTable($this->getAdapter(),null,new ResultSet(clone $this));
         $this->_initialized = true;
+    }
+
+    public function save(){
+        if (!$this->_initialized){
+            $this->init();
+        }
+        $data = $this->getData();
+        if ($this->_loaded) {
+            $this->_mainModelTable->update($data,array('id'=>$this->getData('id')));
+        } else {
+            $this->_mainModelTable->insert($data);
+        }
     }
 
     abstract protected function getFullTableName();

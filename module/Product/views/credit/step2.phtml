@@ -1,0 +1,29 @@
+<?php
+$title = '2. Данные о работе';
+$this->headTitle($title);
+?>
+<h2><?php echo $this->escape($title); ?></h2>
+    <form id="form1" name="form1" method="post" action="">
+  <div>
+    <label for="org_name">Название организации:</label>
+    <input name="org_name" type="text" id="org_name" value="" />
+  </div>
+  <div>
+    <label for="position">Должность</label>
+    <input type="text" name="position" id="position" />
+  </div>
+  <div>
+    <label for="salary">Оклад:</label>
+    <input type="text" name="salary" id="salary" />
+  </div>
+  <div>
+    <label for="org_phone">Рабочий телефон:</label>
+    <input type="text" name="org_phone" id="org_phone" />
+  </div>
+  <div>
+    <label for="boss_name">Имя руководителя:</label>
+    <input type="text" name="boss_name" id="boss_name" />
+  </div>
+
+  <input type="submit" value="Далее" class="button white" />
+</form>

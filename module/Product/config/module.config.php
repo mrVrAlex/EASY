@@ -5,6 +5,12 @@ return array(
             'product/product/index' => __DIR__ . '/../views/product/index.phtml',
             'product/credit/index' => __DIR__ . '/../views/credit/index.phtml',
             'product/credit/step1' => __DIR__ . '/../views/credit/step1.phtml',
+            'product/credit/step2' => __DIR__ . '/../views/credit/step2.phtml',
+            'product/credit/step3' => __DIR__ . '/../views/credit/step3.phtml',
+            'product/credit/step4' => __DIR__ . '/../views/credit/step4.phtml',
+            'product/credit/step5' => __DIR__ . '/../views/credit/step5.phtml',
+            'product/credit/step6' => __DIR__ . '/../views/credit/step6.phtml',
+            'product/credit/step7' => __DIR__ . '/../views/credit/step7.phtml',
         ),
         'template_path_stack' => array(
             'product' => __DIR__ . '/../views',

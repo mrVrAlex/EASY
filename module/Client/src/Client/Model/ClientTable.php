@@ -7,5 +7,5 @@ use Core\Db\Table as DbTable,
 
 class ClientTable extends DbTable
 {
-    protected $tableName = 'clients';
+    protected $tableName = 'client_entity';
 }
